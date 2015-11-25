@@ -8,6 +8,9 @@ public class PlayerMovement : MonoBehaviour {
     public float turnLimit;
 
     private Rigidbody rb;
+    private Vector3 mousePosition;
+    private float rotation;
+
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +23,7 @@ public class PlayerMovement : MonoBehaviour {
     }
  
     void FixedUpdate() {
+        // Trigger speed burst on movement key press
         if (Input.GetKeyDown(KeyCode.LeftArrow))
             SpeedBurst(new Vector3(-speed, 0, 0), turnSpeed);
         if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -28,8 +32,13 @@ public class PlayerMovement : MonoBehaviour {
             SpeedBurst(new Vector3(0, speed, 0), turnSpeed);
         if (Input.GetKeyDown(KeyCode.DownArrow))
             SpeedBurst(new Vector3(0, -speed, 0), -turnSpeed);
-        
+        // Keep velocity under check
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, speedLimit);
+
+        //Grab the current mouse position on the screen
+        mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z - Camera.main.transform.position.z));
+        //rotation = Mathf.Atan2((mousePosition.y - transform.position.y), (mousePosition.x - transform.position.x)) * Mathf.Rad2Deg - 90;
+        //rb.transform.eulerAngles = new Vector3(transform.eulerAngles.x, rotation, transform.eulerAngles.z);
 	}
 
     void SpeedBurst(Vector3 input, float torque) {
