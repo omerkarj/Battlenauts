@@ -37,8 +37,10 @@ public class PlayerMovement : MonoBehaviour {
 
         //Grab the current mouse position on the screen
         mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z - Camera.main.transform.position.z));
-        //rotation = Mathf.Atan2((mousePosition.y - transform.position.y), (mousePosition.x - transform.position.x)) * Mathf.Rad2Deg - 90;
-        //rb.transform.eulerAngles = new Vector3(transform.eulerAngles.x, rotation, transform.eulerAngles.z);
+        rotation = Mathf.Atan2((mousePosition.y - transform.position.y), (mousePosition.x - transform.position.x)) * Mathf.Rad2Deg - 90;
+        rb.transform.eulerAngles = new Vector3(transform.eulerAngles.x, rotation, transform.eulerAngles.z);
+        Debug.Log(rb.transform);
+        Debug.Log(transform);
 	}
 
     void SpeedBurst(Vector3 input, float torque) {
