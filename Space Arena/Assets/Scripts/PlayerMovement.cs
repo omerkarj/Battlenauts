@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour {
     private Rigidbody rb;
     private Vector3 mousePosition;
     private float rotation;
+    private WeaponStats weapon;
 
     enum Facing { left, right };
     private Facing facing = Facing.right;
@@ -21,10 +22,12 @@ public class PlayerMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	    rb = GetComponent<Rigidbody>();
+        weapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<WeaponController>().stats;
 	}
 	
 	// Update is called once per frame
     void Update() {
+        mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z - Camera.main.transform.position.z));
         FaceMousePosition();
 
         // Keep transform Y-Axis and X-Axis rotations at 0
@@ -41,6 +44,18 @@ public class PlayerMovement : MonoBehaviour {
             SpeedBurst(new Vector3(0, speed, 0), turnSpeed);
         if (Input.GetKeyDown(KeyCode.DownArrow))
             SpeedBurst(new Vector3(0, -speed, 0), -turnSpeed);
+
+        // Trigger weapon backfire
+        if (Input.GetMouseButtonDown(0)) {
+            Vector3 dir = -(new Vector3(mousePosition.x, mousePosition.y, mousePosition.z)
+                - new Vector3(transform.position.x, transform.position.y, transform.position.z)).normalized;
+            if (facing == Facing.left)
+                // torque to the right
+                SpeedBurst(dir * speed * weapon.force, -turnSpeed * weapon.force);
+            else
+                // torque to the left
+                SpeedBurst(dir * speed * weapon.force, turnSpeed * weapon.force);
+        }
 
         // Keep velocity under check
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, speedLimit);
@@ -62,7 +77,6 @@ public class PlayerMovement : MonoBehaviour {
     // Keeps the player facing the mouse cursor at all times
     void FaceMousePosition()
     {
-        mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z - Camera.main.transform.position.z));
         Vector3 xDistance = mousePosition - transform.position;
         float relativeMousePosition = Vector3.Dot(xDistance, transform.right.normalized);
 
