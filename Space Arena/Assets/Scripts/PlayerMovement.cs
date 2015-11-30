@@ -68,11 +68,9 @@ public class PlayerMovement : MonoBehaviour {
 
         // Decide which way to face the player according to mouse position
         if (relativeMousePosition <= 0) {
-            Debug.Log("facing left");
             facing = Facing.left;
         }
         else if (relativeMousePosition > 0) {
-            Debug.Log("facing right");
             facing = Facing.right;
         }
 
