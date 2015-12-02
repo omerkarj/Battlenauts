@@ -23,7 +23,7 @@ public class WeaponController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         // point the weapon at the mouse cursor
-        model.LookAt(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
+        //model.LookAt(new Vector3(Input.mousePosition.x, 0, Input.mousePosition.z));
 	}
 
     // Switch the current weapon

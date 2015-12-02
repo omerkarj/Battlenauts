@@ -2,10 +2,10 @@
 using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
-    public float speed = 1000; 
-    public float speedLimit = 6;
-    public float turnSpeed = 200;
-    public float turnSpeedLimit = 4;
+    public float speed = 3000; 
+    public float speedLimit = 3000;
+    public float turnSpeed = 400;
+    public float turnSpeedLimit = 400;
     public Transform model;
 
     private const float MIN_Y_ROTATION = 110;
@@ -37,13 +37,13 @@ public class PlayerMovement : MonoBehaviour {
     void FixedUpdate() {
         // Trigger speed burst on movement key press
         if (Input.GetKeyDown(KeyCode.LeftArrow))
-            SpeedBurst(new Vector3(-speed, 0, 0), turnSpeed);
+            SpeedBurst(Vector3.left, 1);
         if (Input.GetKeyDown(KeyCode.RightArrow))
-            SpeedBurst(new Vector3(speed, 0, 0), -turnSpeed);
+            SpeedBurst(Vector3.right, -1);
         if (Input.GetKeyDown(KeyCode.UpArrow))
-            SpeedBurst(new Vector3(0, speed, 0), turnSpeed);
+            SpeedBurst(Vector3.up, 1);
         if (Input.GetKeyDown(KeyCode.DownArrow))
-            SpeedBurst(new Vector3(0, -speed, 0), -turnSpeed);
+            SpeedBurst(Vector3.down, -1);
 
         // Trigger weapon backfire
         if (Input.GetMouseButtonDown(0)) {
@@ -51,10 +51,10 @@ public class PlayerMovement : MonoBehaviour {
                 - new Vector3(transform.position.x, transform.position.y, transform.position.z)).normalized;
             if (facing == Facing.left)
                 // torque to the right
-                SpeedBurst(dir * speed * weapon.force, -turnSpeed * weapon.force);
+                SpeedBurst(dir * weapon.force, -weapon.force);
             else
                 // torque to the left
-                SpeedBurst(dir * speed * weapon.force, turnSpeed * weapon.force);
+                SpeedBurst(dir * weapon.force, weapon.force);
         }
 
         // Keep velocity under check
@@ -63,14 +63,14 @@ public class PlayerMovement : MonoBehaviour {
 
     // Adds force to the player in the appropriate direction
     void SpeedBurst(Vector3 input, float torque) {
-        Vector3 move = input * Time.deltaTime;
+        Vector3 move = input * speed * Time.deltaTime;
 
         if (rb.angularVelocity.z > turnSpeedLimit)
             torque = 0;
 
         if (move != Vector3.zero) {
             rb.AddForce(move);
-            rb.AddRelativeTorque(new Vector3(0, 0, torque * Time.deltaTime));
+            rb.AddRelativeTorque(new Vector3(0, 0, torque * turnSpeed * Time.deltaTime));
         }
     }
 
