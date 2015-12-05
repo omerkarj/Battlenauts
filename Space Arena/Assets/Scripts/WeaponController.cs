@@ -1,33 +1,31 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class WeaponController : MonoBehaviour {
 
-    public Transform model;
-    public Avatar[] avatars;
-
     public WeaponStats stats;
+    private Text weaponText;
 
-    private WeaponStats[] weaponStatsArr;
-    private Animator animator;
-
-    enum Weapons { laserGun, alienWeapon, rocketLauncher };
+    public enum Weapons { laserGun, alienWeapon, rocketLauncher };
 
 	// Use this for initialization
 	void Start () {
-        animator = GetComponentInChildren<Animator>();
+        weaponText = GameObject.FindGameObjectWithTag("WeaponText").GetComponent<Text>();
+
         // start the game with a laser gun!
-        stats = new LaserGun();    
+        SwitchWeapon(Weapons.laserGun);  
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        // point the weapon at the mouse cursor
-        //model.LookAt(new Vector3(Input.mousePosition.x, 0, Input.mousePosition.z));
+        // update weapon name in HUD
+        string weaponName = stats.name;
+        weaponText.text = "Current Weapon: " + weaponName;
 	}
 
     // Switch the current weapon
-    private void SwitchWeapon(Weapons weapon)
+    public void SwitchWeapon(Weapons weapon)
     {
         switch (weapon) {
             case Weapons.laserGun:
@@ -40,6 +38,13 @@ public class WeaponController : MonoBehaviour {
                 stats = new RocketLauncher();
                 break;
         }
-        animator.avatar = avatars[(int) weapon];
+
+        int index = 0;
+        foreach (Transform child in transform) {
+            child.gameObject.SetActive(false);
+            if (index == (int)weapon)
+                child.gameObject.SetActive(true);
+            index++;
+        }
     }
 }

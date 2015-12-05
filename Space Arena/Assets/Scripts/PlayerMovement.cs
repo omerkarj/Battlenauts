@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour {
     private Rigidbody rb;
     private Vector3 mousePosition;
     private float rotation;
-    private WeaponStats weapon;
 
     enum Facing { left, right };
     private Facing facing = Facing.right;
@@ -22,7 +21,6 @@ public class PlayerMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	    rb = GetComponent<Rigidbody>();
-        weapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<WeaponController>().stats;
 	}
 	
 	// Update is called once per frame
@@ -32,6 +30,8 @@ public class PlayerMovement : MonoBehaviour {
 
         // Keep transform Y-Axis and X-Axis rotations at 0
         transform.localEulerAngles = new Vector3(0, 0, transform.localEulerAngles.z);
+        // Keep transform at 0 on Z-axis
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
  
     void FixedUpdate() {
@@ -49,12 +49,13 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetMouseButtonDown(0)) {
             Vector3 dir = -(new Vector3(mousePosition.x, mousePosition.y, mousePosition.z)
                 - new Vector3(transform.position.x, transform.position.y, transform.position.z)).normalized;
+            float weaponForce = GameObject.FindGameObjectWithTag("Weapon").GetComponent<WeaponController>().stats.force;
             if (facing == Facing.left)
                 // torque to the right
-                SpeedBurst(dir * weapon.force, -weapon.force);
+                SpeedBurst(dir * weaponForce, -weaponForce);
             else
                 // torque to the left
-                SpeedBurst(dir * weapon.force, weapon.force);
+                SpeedBurst(dir * weaponForce, weaponForce);
         }
 
         // Keep velocity under check
