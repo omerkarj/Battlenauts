@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour {
     private const float MAX_Y_ROTATION = 250;
 
     private Rigidbody rb;
+    private ParticleSystem thruster;
     private Vector3 mousePosition;
     private float rotation;
 
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	    rb = GetComponent<Rigidbody>();
+        thruster = GetComponentInChildren<ParticleSystem>();
 	}
 	
 	// Update is called once per frame
@@ -73,6 +75,10 @@ public class PlayerMovement : MonoBehaviour {
             rb.AddForce(move);
             rb.AddRelativeTorque(new Vector3(0, 0, torque * turnSpeed * Time.deltaTime));
         }
+
+        // position thruster to "push" in the provided direction
+        thruster.gameObject.transform.LookAt(-input * 100);
+        thruster.Play();
     }
 
     // Keeps the player facing the mouse cursor at all times
