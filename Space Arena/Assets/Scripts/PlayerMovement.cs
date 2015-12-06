@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour {
     private ParticleSystem thruster;
     private Vector3 mousePosition;
     private float rotation;
+    private bool isDead;
 
     enum Facing { left, right };
     private Facing facing = Facing.right;
@@ -23,45 +24,51 @@ public class PlayerMovement : MonoBehaviour {
 	void Start () {
 	    rb = GetComponent<Rigidbody>();
         thruster = GetComponentInChildren<ParticleSystem>();
+        isDead = false;
 	}
 	
 	// Update is called once per frame
     void Update() {
-        mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z - Camera.main.transform.position.z));
-        FaceMousePosition();
+        if (!isDead) {
+            mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z - Camera.main.transform.position.z));
+            FaceMousePosition();
 
-        // Keep transform Y-Axis and X-Axis rotations at 0
-        transform.localEulerAngles = new Vector3(0, 0, transform.localEulerAngles.z);
-        // Keep transform at 0 on Z-axis
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+            // Keep transform Y-Axis and X-Axis rotations at 0
+            transform.localEulerAngles = new Vector3(0, 0, transform.localEulerAngles.z);
+            // Keep transform at 0 on Z-axis
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        }
     }
  
     void FixedUpdate() {
-        // Trigger speed burst on movement key press
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-            SpeedBurst(Vector3.left, 1);
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-            SpeedBurst(Vector3.right, -1);
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-            SpeedBurst(Vector3.up, 1);
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-            SpeedBurst(Vector3.down, -1);
+        if (!isDead) {
+            // Trigger speed burst on movement key press
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+                SpeedBurst(Vector3.left, 1);
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+                SpeedBurst(Vector3.right, -1);
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+                SpeedBurst(Vector3.up, 1);
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+                SpeedBurst(Vector3.down, -1);
 
-        // Trigger weapon backfire
-        if (Input.GetMouseButtonDown(0)) {
-            Vector3 dir = -(new Vector3(mousePosition.x, mousePosition.y, mousePosition.z)
-                - new Vector3(transform.position.x, transform.position.y, transform.position.z)).normalized;
-            float weaponForce = GameObject.FindGameObjectWithTag("Weapon").GetComponent<WeaponController>().stats.force;
-            if (facing == Facing.left)
-                // torque to the right
-                SpeedBurst(dir * weaponForce, -weaponForce);
-            else
-                // torque to the left
-                SpeedBurst(dir * weaponForce, weaponForce);
+            // Trigger weapon backfire
+            if (Input.GetMouseButtonDown(0))
+            {
+                Vector3 dir = -(new Vector3(mousePosition.x, mousePosition.y, mousePosition.z)
+                    - new Vector3(transform.position.x, transform.position.y, transform.position.z)).normalized;
+                float weaponForce = GameObject.FindGameObjectWithTag("Weapon").GetComponent<WeaponController>().stats.force;
+                if (facing == Facing.left)
+                    // torque to the right
+                    SpeedBurst(dir * weaponForce, -weaponForce);
+                else
+                    // torque to the left
+                    SpeedBurst(dir * weaponForce, weaponForce);
+            }
+
+            // Keep velocity under check
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, speedLimit);
         }
-
-        // Keep velocity under check
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, speedLimit);
 	}
 
     // Adds force to the player in the appropriate direction
@@ -103,5 +110,12 @@ public class PlayerMovement : MonoBehaviour {
         else if (facing == Facing.left && currentYRotation < MAX_Y_ROTATION) {
             model.localEulerAngles = Vector3.Slerp(model.localEulerAngles, new Vector3(0, MAX_Y_ROTATION, 0), Time.deltaTime * 1.6f);    
         }
+    }
+
+    // Kills the astronaut
+    public void KillPlayer() {
+        isDead = true;
+        rb.angularDrag = 0;
+        rb.drag = 0;
     }
 }

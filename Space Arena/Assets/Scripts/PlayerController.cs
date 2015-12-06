@@ -4,7 +4,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-    private int hp;
+    public int hp;
     private Text hpText;
     private WeaponController weaponController;
 
