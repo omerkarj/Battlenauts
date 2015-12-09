@@ -4,7 +4,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-    private int hp;
+    public int hp;
     private Text hpText;
     private WeaponController weaponController;
 
@@ -41,7 +41,8 @@ public class PlayerController : MonoBehaviour {
                 hp -= 10;
                 break;
             // Collision with enemy / asteroid
-            default:
+            case "EnemyKamikaze":
+            case "Asteroid":
                 hp -= 20;
                 break;
         }
