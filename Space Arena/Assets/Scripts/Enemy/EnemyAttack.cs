@@ -28,13 +28,13 @@ public class EnemyAttack : MonoBehaviour {
 
     void Shoot()
     {
-        player = UnityEngine.GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
 
         float angle = (Mathf.Atan2(
             player.transform.position.y - transform.position.y,
             player.transform.position.x - transform.position.x) - Mathf.PI / 2) * Mathf.Rad2Deg;
 
-        Instantiate(EnemyShot, transform.position, Quaternion.Euler(new Vector3(0f, 0f, angle)));
-        Destroy(EnemyShot, 2f);
+        GameObject shot = Instantiate(EnemyShot, transform.position, Quaternion.Euler(new Vector3(0f, 0f, angle))) as GameObject;
+        Destroy(shot, 2f);
     }
 }

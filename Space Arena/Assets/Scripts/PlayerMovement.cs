@@ -41,7 +41,6 @@ public class PlayerMovement : MonoBehaviour {
     }
  
     void FixedUpdate() {
-<<<<<<< HEAD
         if (!isDead) {
             // Trigger speed burst on movement key press
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
@@ -74,26 +73,6 @@ public class PlayerMovement : MonoBehaviour {
             // Keep velocity under check
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, speedLimit);
         }
-=======
-        // Trigger speed burst on movement key press
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-            SpeedBurst(new Vector3(-speed, 0, 0), turnSpeed);
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-            SpeedBurst(new Vector3(speed, 0, 0), -turnSpeed);
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-            SpeedBurst(new Vector3(0, speed, 0), turnSpeed);
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-            SpeedBurst(new Vector3(0, -speed, 0), -turnSpeed);
-        // Keep velocity under check
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, speedLimit);
-
-        //Grab the current mouse position on the screen
-        mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z - Camera.main.transform.position.z));
-        rotation = Mathf.Atan2((mousePosition.y - transform.position.y), (mousePosition.x - transform.position.x)) * Mathf.Rad2Deg - 90;
-        //rb.transform.eulerAngles = new Vector3(transform.eulerAngles.x, rotation, transform.eulerAngles.z);
-        Debug.Log(rb.transform);
-        Debug.Log(transform);
->>>>>>> 7dc5ff9dcf5b46711388ec9f15d0d140b3c97474
 	}
 
     // Adds force to the player in the appropriate direction
