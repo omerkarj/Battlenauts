@@ -43,27 +43,31 @@ public class PlayerMovement : MonoBehaviour {
     void FixedUpdate() {
         if (!isDead) {
             // Trigger speed burst on movement key press
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-                SpeedBurst(Vector3.left, 1);
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-                SpeedBurst(Vector3.right, -1);
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-                SpeedBurst(Vector3.up, 1);
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-                SpeedBurst(Vector3.down, -1);
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+                SpeedBurst(Vector3.left, 1, true);
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+                SpeedBurst(Vector3.right, -1, true);
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+                SpeedBurst(Vector3.up, 1, true);
+            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+                SpeedBurst(Vector3.down, -1, true);
+
+            // point weapon towards mouse cursor
+            GameObject weapon = GameObject.FindGameObjectWithTag("Weapon");
+            weapon.transform.LookAt(mousePosition);
 
             // Trigger weapon backfire
             if (Input.GetMouseButtonDown(0))
             {
                 Vector3 dir = -(new Vector3(mousePosition.x, mousePosition.y, mousePosition.z)
                     - new Vector3(transform.position.x, transform.position.y, transform.position.z)).normalized;
-                float weaponForce = GameObject.FindGameObjectWithTag("Weapon").GetComponent<WeaponController>().stats.force;
+                float weaponForce = weapon.GetComponent<WeaponController>().stats.force;
                 if (facing == Facing.left)
                     // torque to the right
-                    SpeedBurst(dir * weaponForce, -weaponForce);
+                    SpeedBurst(dir * weaponForce, -weaponForce, false);
                 else
                     // torque to the left
-                    SpeedBurst(dir * weaponForce, weaponForce);
+                    SpeedBurst(dir * weaponForce, weaponForce, false);
             }
 
             // Keep velocity under check
@@ -72,7 +76,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
     // Adds force to the player in the appropriate direction
-    void SpeedBurst(Vector3 input, float torque) {
+    void SpeedBurst(Vector3 input, float torque, bool triggerJet) {
         Vector3 move = input * speed * Time.deltaTime;
 
         if (rb.angularVelocity.z > turnSpeedLimit)
@@ -84,8 +88,10 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         // position thruster to "push" in the provided direction
-        thruster.gameObject.transform.LookAt(-input * 100);
-        thruster.Play();
+        if (triggerJet) {
+            thruster.gameObject.transform.LookAt(-input * 100);
+            thruster.Play();
+        }
     }
 
     // Keeps the player facing the mouse cursor at all times
