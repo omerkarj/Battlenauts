@@ -6,14 +6,23 @@ public class GameController : MonoBehaviour {
 
     public List<GameObject> weaponPrefabs;
 
+    private PlayerController playerController;
+    private PlayerMovement playerMovement;
+
 	// Use this for initialization
 	void Start () {
-        InvokeRepeating("SpawnWeapon", 0, 5f);   
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+
+        InvokeRepeating("SpawnWeapon", 0, 5f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+        if (playerController.hp <= 0) {
+            playerController.hp = 0;
+            playerMovement.KillPlayer();
+        }
 	}
 
     private void SpawnWeapon()

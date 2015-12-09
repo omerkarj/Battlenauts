@@ -5,7 +5,10 @@ using System.Collections;
 public class WeaponController : MonoBehaviour {
 
     public WeaponStats stats;
+    public Rigidbody[] projectile;
+
     private Text weaponText;
+    private Weapons currentWeapon;
 
     public enum Weapons { laserGun, alienWeapon, rocketLauncher };
 
@@ -22,6 +25,20 @@ public class WeaponController : MonoBehaviour {
         // update weapon name in HUD
         string weaponName = stats.name;
         weaponText.text = "Current Weapon: " + weaponName;
+
+        // Trigger weapon shot
+        if (Input.GetMouseButtonDown(0))
+        {
+            Rigidbody clone;
+            Vector3 clonePos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z - Camera.main.transform.position.z));
+            Vector3 dir = (mousePos - clonePos).normalized;
+
+            clone = Instantiate(projectile[(int) currentWeapon], clonePos, Quaternion.identity) as Rigidbody;
+            clone.transform.LookAt(mousePos);
+            
+            clone.velocity = dir * stats.speed;
+        }
 	}
 
     // Switch the current weapon
@@ -46,5 +63,7 @@ public class WeaponController : MonoBehaviour {
                 child.gameObject.SetActive(true);
             index++;
         }
+
+        currentWeapon = weapon;
     }
 }
