@@ -5,7 +5,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
     
     private WeaponController weaponController;
-    public int hp;
+    
 	// Use this for initialization
 	void Start () {
         weaponController = GameObject.FindGameObjectWithTag("Weapon").GetComponent<WeaponController>();
@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour {
 
     void OnTriggerEnter (Collider other) {
         Debug.Log("touched: " + other.gameObject.tag);
-
         switch (other.gameObject.tag) {
             // Weapon pickups
             case "WeaponDrop-LaserGun":

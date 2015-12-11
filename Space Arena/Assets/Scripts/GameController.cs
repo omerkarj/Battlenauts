@@ -19,10 +19,6 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (playerController.hp <= 0) {
-            playerController.hp = 0;
-            playerMovement.KillPlayer();
-        }
 	}
 
     private void SpawnWeapon()
