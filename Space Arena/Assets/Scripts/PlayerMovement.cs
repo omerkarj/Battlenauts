@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour {
     private float rotation;
     private bool isDead;
 
+    private Animator astroAnimator;
+
     enum Facing { left, right };
     private Facing facing = Facing.right;
 
@@ -25,6 +27,8 @@ public class PlayerMovement : MonoBehaviour {
 	    rb = GetComponent<Rigidbody>();
         thruster = GetComponentInChildren<ParticleSystem>();
         isDead = false;
+
+        astroAnimator = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -37,6 +41,11 @@ public class PlayerMovement : MonoBehaviour {
             transform.localEulerAngles = new Vector3(0, 0, transform.localEulerAngles.z);
             // Keep transform at 0 on Z-axis
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+
+            Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+            pos.x = Mathf.Clamp(pos.x, 0.1f, 0.9f);
+            pos.y = Mathf.Clamp(pos.y, 0.1f, 0.9f);
+            transform.position = Camera.main.ViewportToWorldPoint(pos);
         }
     }
  
