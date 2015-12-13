@@ -71,14 +71,15 @@ public class PlayerHealth : MonoBehaviour {
             // Hit by enemy shot
             case "EnemyShot":
                 currentHealth -= Random.Range(5, 10);
-                HandleHealth();
                 break;
             // Collision with enemy / asteroid
-            case "EnemyKamikaze":
+            case "target":
             case "Asteroid":
-                currentHealth -= 20;
+                currentHealth -= Random.Range(10, 20);
                 break;
         }
+
+        HandleHealth();
     }
 
 
