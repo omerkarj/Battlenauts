@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-<<<<<<< HEAD
+
 public class missileLauncher : MonoBehaviour
 {
     public bool startLaunch = false;
@@ -10,32 +10,15 @@ public class missileLauncher : MonoBehaviour
     Rigidbody r;
     Animator anim;
     Vector3 startPosition;
-    // Use this for initialization
-    void Start()
-    {
-        anim = gameObject.GetComponent<Animator>();
-        anim.enabled = false;
-        r = gameObject.GetComponent<Rigidbody>();
-        startPosition = transform.position;
-    }
-=======
-public class missileLauncher : MonoBehaviour {
-	public bool startLaunch=false;
-	public int launchNumber = 1;
-	public Transform missile;
-	Animator anim;
 	// Use this for initialization
 	void Start () {
 		anim = gameObject.GetComponent<Animator> ();
-	}
+            anim.enabled = false;
+            r = gameObject.GetComponent<Rigidbody>();
+            startPosition = transform.position;
+        }
 	
 	// Update is called once per frame
-	void Update () {
-	    if (startLaunch) {
-			StartCoroutine(fireAndAnimate());
->>>>>>> 65578c757b9d0e9e9832f3f2b7aa5be844ad3fa2
-
-    // Update is called once per frame
     void Update()
     {
         if (startLaunch)
