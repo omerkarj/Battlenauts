@@ -7,12 +7,13 @@ public class PlayerMovement : MonoBehaviour {
     public float turnSpeed = 400;
     public float turnSpeedLimit = 400;
     public Transform model;
+    public GameObject thrusterPrefab;
 
     private const float MIN_Y_ROTATION = 110;
     private const float MAX_Y_ROTATION = 250;
 
     private Rigidbody rb;
-    private ParticleSystem thruster;
+    private Transform thrusterPos;
     private Vector3 mousePosition;
     private float rotation;
     private bool isDead;
@@ -25,7 +26,7 @@ public class PlayerMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	    rb = GetComponent<Rigidbody>();
-        thruster = GetComponentInChildren<ParticleSystem>();
+        thrusterPos = GameObject.FindGameObjectWithTag("ThrusterPos").GetComponent<Transform>();
         isDead = false;
 
         astroAnimator = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<Animator>();
@@ -98,8 +99,10 @@ public class PlayerMovement : MonoBehaviour {
 
         // position thruster to "push" in the provided direction
         if (triggerJet) {
+            GameObject thruster = Instantiate(thrusterPrefab, thrusterPos.position, Quaternion.identity) as GameObject;
             thruster.gameObject.transform.LookAt(-input * 100);
-            thruster.Play();
+            thruster.GetComponent<ParticleSystem>().Play();
+            Destroy(thruster, 2f);
         }
     }
 
