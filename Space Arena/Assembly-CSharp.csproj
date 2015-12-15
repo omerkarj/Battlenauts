@@ -45,6 +45,14 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Demo\scripts\BaseDemoGUI.cs" />
+     <Compile Include="Assets\Demo\scripts\FPSHUD.cs" />
+     <Compile Include="Assets\Demo\scripts\PathTweenGUI.cs" />
+     <Compile Include="Assets\Demo\scripts\ShakeVariantsGUI.cs" />
+     <Compile Include="Assets\Demo\scripts\SimpleTween.cs" />
+     <Compile Include="Assets\Demo\scripts\StressTestGUI.cs" />
+     <Compile Include="Assets\Demo\scripts\TweenChainGUI.cs" />
+     <Compile Include="Assets\Demo\scripts\TweenFlowGUI.cs" />
      <Compile Include="Assets\Objects\Earth\earthScript.cs" />
      <Compile Include="Assets\Objects\missile\collisionDestroy.cs" />
      <Compile Include="Assets\Objects\missile\homingMissile.cs" />
@@ -86,6 +94,7 @@
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ContrastComposite.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset3.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\FisheyeShader.shader" />
+     <None Include="Assets\Plugins\GoKit\easing\easeEquationsLicense.txt" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Apply.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\frag_ao.cginc" />
      <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />
