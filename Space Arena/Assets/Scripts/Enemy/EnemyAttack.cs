@@ -35,6 +35,6 @@ public class EnemyAttack : MonoBehaviour {
             player.transform.position.x - transform.position.x) - Mathf.PI / 2) * Mathf.Rad2Deg;
 
         GameObject shot = Instantiate(EnemyShot, transform.position, Quaternion.Euler(new Vector3(0f, 0f, angle))) as GameObject;
-        Destroy(shot, 2f);
+        Destroy(shot, 10f);
     }
 }

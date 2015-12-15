@@ -57,7 +57,7 @@ public class EnemyMovement : MonoBehaviour {
         }
 
         // Check if enemy is dead
-        if (healthCounter == 0)
+        if (healthCounter == 0 || other.gameObject.tag == "Missile")
         {
             Destroy(gameObject);
         }
