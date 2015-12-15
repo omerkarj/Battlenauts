@@ -9,7 +9,7 @@ public class earthScript : MonoBehaviour {
 	}
 
     // Update is called once per frame
-    float rotationsPerMinute = 1;
+    float rotationsPerMinute = 0.3f;
 	void Update () {
 
         transform.Rotate(new Vector3(0, 6.0F * rotationsPerMinute * Time.deltaTime, 0));

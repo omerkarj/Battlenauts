@@ -7,15 +7,18 @@ public class PlayerMovement : MonoBehaviour {
     public float turnSpeed = 400;
     public float turnSpeedLimit = 400;
     public Transform model;
+    public GameObject thrusterPrefab;
 
     private const float MIN_Y_ROTATION = 110;
     private const float MAX_Y_ROTATION = 250;
 
     private Rigidbody rb;
-    private ParticleSystem thruster;
+    private Transform thrusterPos;
     private Vector3 mousePosition;
     private float rotation;
     private bool isDead;
+
+    private Animator astroAnimator;
 
     enum Facing { left, right };
     private Facing facing = Facing.right;
@@ -23,8 +26,10 @@ public class PlayerMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	    rb = GetComponent<Rigidbody>();
-        thruster = GetComponentInChildren<ParticleSystem>();
+        thrusterPos = GameObject.FindGameObjectWithTag("ThrusterPos").GetComponent<Transform>();
         isDead = false;
+
+        astroAnimator = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -37,6 +42,11 @@ public class PlayerMovement : MonoBehaviour {
             transform.localEulerAngles = new Vector3(0, 0, transform.localEulerAngles.z);
             // Keep transform at 0 on Z-axis
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+
+            Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+            pos.x = Mathf.Clamp(pos.x, 0.1f, 0.9f);
+            pos.y = Mathf.Clamp(pos.y, 0.1f, 0.9f);
+            transform.position = Camera.main.ViewportToWorldPoint(pos);
         }
     }
  
@@ -89,8 +99,10 @@ public class PlayerMovement : MonoBehaviour {
 
         // position thruster to "push" in the provided direction
         if (triggerJet) {
+            GameObject thruster = Instantiate(thrusterPrefab, thrusterPos.position, Quaternion.identity) as GameObject;
             thruster.gameObject.transform.LookAt(-input * 100);
-            thruster.Play();
+            thruster.GetComponent<ParticleSystem>().Play();
+            Destroy(thruster, 2f);
         }
     }
 

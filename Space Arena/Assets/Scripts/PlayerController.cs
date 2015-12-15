@@ -4,26 +4,31 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-    public int hp;
-    private Text hpText;
-    private WeaponController weaponController;
+    public GameObject spaceship;
 
+    private WeaponController weaponController;
+    
 	// Use this for initialization
 	void Start () {
-        hp = 100;
-        hpText = GameObject.FindGameObjectWithTag("HPText").GetComponent<Text>();
         weaponController = GameObject.FindGameObjectWithTag("Weapon").GetComponent<WeaponController>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        // update HP in HUD
-        hpText.text = "HP: " + hp;
+        
+       
 	}
 
-    void OnTriggerEnter (Collider other) {
-        Debug.Log("touched: " + other.gameObject.tag);
+    void FixedUpdate() {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            spaceship.GetComponent<missileLauncher>().launchNumber = GameObject.FindGameObjectsWithTag("target").Length;
+            Debug.Log(spaceship.GetComponent<missileLauncher>().launchNumber + " missiles launched!");
+            spaceship.GetComponent<missileLauncher>().startLaunch = true;
+        }
+    }
 
+    void OnTriggerEnter (Collider other) {
+        //Debug.Log("touched: " + other.gameObject.tag);
         switch (other.gameObject.tag) {
             // Weapon pickups
             case "WeaponDrop-LaserGun":
@@ -32,20 +37,8 @@ public class PlayerController : MonoBehaviour {
             case "WeaponDrop-AlienWeapon":
                 weaponController.SwitchWeapon(WeaponController.Weapons.alienWeapon);
                 break;
-            // Health pickup
-            case "HealthDrop":
-                hp += 10;
-                break;
-            // Hit by enemy shot
-            case "EnemyShot":
-                hp -= 10;
-                break;
-            // Collision with enemy / asteroid
-            case "EnemyKamikaze":
-            case "Asteroid":
-                hp -= 20;
-                break;
         }
-        Destroy(other.gameObject);
+        if (other.gameObject.tag != "PlayerShot")
+            Destroy(other.gameObject);
     }
 }

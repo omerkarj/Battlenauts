@@ -13,7 +13,7 @@ public class missileLauncher : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	if (startLaunch) {
+	    if (startLaunch) {
 			StartCoroutine(fireAndAnimate());
 
 		}
