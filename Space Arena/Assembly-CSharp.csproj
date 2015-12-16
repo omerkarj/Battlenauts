@@ -45,14 +45,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Demo\scripts\BaseDemoGUI.cs" />
-     <Compile Include="Assets\Demo\scripts\FPSHUD.cs" />
-     <Compile Include="Assets\Demo\scripts\PathTweenGUI.cs" />
-     <Compile Include="Assets\Demo\scripts\ShakeVariantsGUI.cs" />
-     <Compile Include="Assets\Demo\scripts\SimpleTween.cs" />
-     <Compile Include="Assets\Demo\scripts\StressTestGUI.cs" />
-     <Compile Include="Assets\Demo\scripts\TweenChainGUI.cs" />
-     <Compile Include="Assets\Demo\scripts\TweenFlowGUI.cs" />
      <Compile Include="Assets\Objects\Earth\earthScript.cs" />
      <Compile Include="Assets\Objects\missile\collisionDestroy.cs" />
      <Compile Include="Assets\Objects\missile\homingMissile.cs" />
