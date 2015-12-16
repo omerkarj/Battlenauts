@@ -93,6 +93,7 @@ ModelImporter:
     4300006: Line003
     4300008: Line004
     7400000: Take 001
+    7400002: Take 0010
     9500000: //RootNode
     13700000: Group12233
   materials:
@@ -114,7 +115,221 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 1
+        functionName: NewEvent
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 1
+        functionName: NewEvent
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bone014
+        weight: 1
+      - path: Bone014/Bone015
+        weight: 1
+      - path: Bone014/Bone015/Bone016
+        weight: 1
+      - path: Bone014/Bone015/Bone016/Bone017
+        weight: 1
+      - path: Bone014/connectBone005
+        weight: 1
+      - path: Bone014/connectBone005/connectBone001
+        weight: 1
+      - path: Bone014/connectBone005/connectBone001/Bone006
+        weight: 1
+      - path: Bone014/connectBone005/connectBone001/Bone006/Bone007
+        weight: 1
+      - path: Bone014/connectBone005/connectBone001/Bone006/Bone007/Bone008
+        weight: 1
+      - path: Bone014/connectBone005/connectBone001/Bone006/Bone007/Bone008/Bone009
+        weight: 1
+      - path: Bone018
+        weight: 1
+      - path: Bone018/Bone021
+        weight: 1
+      - path: Bone018/Bone021/Bone019
+        weight: 1
+      - path: Bone018/Bone021/Bone019/Bone020
+        weight: 1
+      - path: Bone018/connectBone004
+        weight: 1
+      - path: Bone018/connectBone004/Bone001
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/Bone002
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/Bone002/Bone003
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/Bone002/Bone003/Bone004
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/Bone002/Bone003/Bone004/Bone005
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/connectBone002
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/connectBone002/Bone010
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/connectBone002/Bone010/Bone013
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/connectBone002/Bone010/Bone013/Bone011
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/connectBone002/Bone010/Bone013/Bone011/Bone012
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/connectBone003
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/connectBone003/Bone022
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/connectBone003/Bone022/Bone023
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/connectBone003/Bone022/Bone023/Bone024
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/connectBone003/Bone022/Bone023/Bone024/Bone025
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/Group12235
+        weight: 1
+      - path: Group12233
+        weight: 1
+      - path: Line001
+        weight: 1
+      - path: Line002
+        weight: 1
+      - path: Line003
+        weight: 1
+      - path: Line004
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Take 0010
+      takeName: Take 001
+      firstFrame: 60
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bone014
+        weight: 1
+      - path: Bone014/Bone015
+        weight: 1
+      - path: Bone014/Bone015/Bone016
+        weight: 1
+      - path: Bone014/Bone015/Bone016/Bone017
+        weight: 1
+      - path: Bone014/connectBone005
+        weight: 1
+      - path: Bone014/connectBone005/connectBone001
+        weight: 1
+      - path: Bone014/connectBone005/connectBone001/Bone006
+        weight: 1
+      - path: Bone014/connectBone005/connectBone001/Bone006/Bone007
+        weight: 1
+      - path: Bone014/connectBone005/connectBone001/Bone006/Bone007/Bone008
+        weight: 1
+      - path: Bone014/connectBone005/connectBone001/Bone006/Bone007/Bone008/Bone009
+        weight: 1
+      - path: Bone018
+        weight: 1
+      - path: Bone018/Bone021
+        weight: 1
+      - path: Bone018/Bone021/Bone019
+        weight: 1
+      - path: Bone018/Bone021/Bone019/Bone020
+        weight: 1
+      - path: Bone018/connectBone004
+        weight: 1
+      - path: Bone018/connectBone004/Bone001
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/Bone002
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/Bone002/Bone003
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/Bone002/Bone003/Bone004
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/Bone002/Bone003/Bone004/Bone005
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/connectBone002
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/connectBone002/Bone010
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/connectBone002/Bone010/Bone013
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/connectBone002/Bone010/Bone013/Bone011
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/connectBone002/Bone010/Bone013/Bone011/Bone012
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/connectBone003
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/connectBone003/Bone022
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/connectBone003/Bone022/Bone023
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/connectBone003/Bone022/Bone023/Bone024
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/connectBone003/Bone022/Bone023/Bone024/Bone025
+        weight: 1
+      - path: Bone018/connectBone004/Bone001/Group12235
+        weight: 1
+      - path: Group12233
+        weight: 1
+      - path: Line001
+        weight: 1
+      - path: Line002
+        weight: 1
+      - path: Line003
+        weight: 1
+      - path: Line004
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []

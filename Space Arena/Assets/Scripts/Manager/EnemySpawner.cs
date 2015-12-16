@@ -25,6 +25,6 @@ public class EnemySpawner : MonoBehaviour {
 
         int spawnPointIndex = Random.Range(0, spawnPoints.Length);
 
-        Instantiate(Minion, spawnPoints[spawnPointIndex].position, new Quaternion());
+        Instantiate(Minion, transform.position, new Quaternion());
     }
 }
