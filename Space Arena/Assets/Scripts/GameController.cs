@@ -20,8 +20,8 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (playerMovement.isDead)
-            newPlayer();
+        //if (playerMovement.isDead)
+        //    newPlayer();
 	}
 
     private void SpawnWeapon()
