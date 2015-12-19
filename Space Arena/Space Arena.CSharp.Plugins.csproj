@@ -132,6 +132,10 @@
     <Compile Include="Assets\Plugins\GoKit\properties\splines\GoSplineCubicBezierSolver.cs" />
     <Compile Include="Assets\Plugins\GoKit\properties\splines\GoSplineQuadraticBezierSolver.cs" />
     <Compile Include="Assets\Plugins\GoKit\properties\splines\GoSplineStraightLineSolver.cs" />
+    <Compile Include="Assets\Plugins\Pixelplacement\iTween\Sample\MoveSample.cs" />
+    <Compile Include="Assets\Plugins\Pixelplacement\iTween\Sample\RotateSample.cs" />
+    <Compile Include="Assets\Plugins\Pixelplacement\iTween\Sample\SampleInfo.cs" />
+    <Compile Include="Assets\Plugins\Pixelplacement\iTween\iTween.cs" />
     <Compile Include="Assets\Standard Assets\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
     <Compile Include="Assets\Standard Assets\CrossPlatformInput\Scripts\ButtonHandler.cs" />
     <Compile Include="Assets\Standard Assets\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
@@ -218,6 +222,7 @@
   <ItemGroup>
     <None Include="Assets\Objects\Earth\NewSurfaceShader.shader" />
     <None Include="Assets\Plugins\GoKit\easing\easeEquationsLicense.txt" />
+    <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />
