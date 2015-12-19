@@ -45,6 +45,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\MainMenu\LoadOnClick.cs" />
+     <Compile Include="Assets\MainMenu\Menu.cs" />
+     <Compile Include="Assets\MainMenu\MenuManager.cs" />
      <Compile Include="Assets\Objects\Asteroids\asteroidController.cs" />
      <Compile Include="Assets\Objects\Asteroids\asteroidCreator.cs" />
      <Compile Include="Assets\Objects\Earth\earthScript.cs" />
