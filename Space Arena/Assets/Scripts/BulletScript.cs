@@ -21,7 +21,7 @@ public class BulletScript : MonoBehaviour {
     {
         if(theCollision.gameObject.tag=="target"||theCollision.gameObject.tag=="targeted")
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
 
         }
     }

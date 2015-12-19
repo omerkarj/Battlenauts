@@ -17,19 +17,27 @@ public class EnemyMovement : MonoBehaviour {
     private float directionChangeInterval;
     private float x;
     private float y;
+    private bool start = false;
     // Use this for initialization
     void Start ()
     {
         int pathNo = (int) Random.Range(1f, 7f);
-        iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath("EnemyPath" + pathNo), "time", 10));
+        iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath("EnemyPath" + pathNo), "time", 8));
         directionChangeInterval = DirectionChangeInterval;
-        Push();
+        StartCoroutine(waitTenSeconds());
+       // Push();
 	}
-	
-	// Update is called once per frame
+
+    private IEnumerator waitTenSeconds()
+    {
+        yield return new WaitForSeconds(10F);
+        start = true;
+    }
+
+    // Update is called once per frame
 
 
-	void Update ()
+    void Update ()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         
@@ -58,12 +66,14 @@ public class EnemyMovement : MonoBehaviour {
 
     void Push()
     {
+        if (start)
+        { 
         float force = Random.Range(MinForce, MaxForce);
         x = Random.Range(-1f, 1f);
         y = Random.Range(-1f, 1f);
 
         GetComponent<Rigidbody>().AddForce(force * new Vector3(x, y, 0));
-
+    }
     }
 
     void OnTriggerEnter (Collider other)
