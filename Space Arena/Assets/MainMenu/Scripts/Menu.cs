@@ -5,7 +5,8 @@ public class Menu : MonoBehaviour {
 
     private Animator _animator;
     private CanvasGroup _canvasGroup;
-
+    public RectTransform rect;
+    
     public bool IsOpen
     {
         get { return _animator.GetBool("IsOpen"); }
@@ -17,8 +18,8 @@ public class Menu : MonoBehaviour {
         _animator = GetComponent<Animator>();
         _canvasGroup = GetComponent<CanvasGroup>();
 
-        var rect = GetComponent<RectTransform>();
-        rect.position = new Vector2(0, 0);
+        rect = GetComponent<RectTransform>();
+        //rect.position = new Vector3(0, 0, 0);
         _canvasGroup.interactable = true;
         
 
@@ -26,7 +27,7 @@ public class Menu : MonoBehaviour {
 
     public void Update()
     {
-
+        //rect.position = new Vector3(0, 0, 0);
         if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("MainMenuOpen"))
         {
             _canvasGroup.blocksRaycasts = _canvasGroup.interactable = false;

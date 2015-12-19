@@ -20,4 +20,9 @@ public void ShowMenu(Menu menu)
         CurrentMenu.IsOpen = true;
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
 }
