@@ -45,6 +45,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Objects\Asteroids\asteroidController.cs" />
+     <Compile Include="Assets\Objects\Asteroids\asteroidCreator.cs" />
      <Compile Include="Assets\Objects\Earth\earthScript.cs" />
      <Compile Include="Assets\Objects\missile\collisionDestroy.cs" />
      <Compile Include="Assets\Objects\missile\homingMissile.cs" />
