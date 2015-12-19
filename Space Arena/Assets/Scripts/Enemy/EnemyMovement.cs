@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class EnemyMovement : MonoBehaviour {
 
@@ -21,8 +22,8 @@ public class EnemyMovement : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        int pathNo = (int) Random.Range(1f, 7f);
-        iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath("EnemyPath" + pathNo), "time", 8));
+        int pathNo = (int)UnityEngine.Random.Range(1f, 7f);
+        iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath("EnemyPath" + pathNo), "time", 10));
         directionChangeInterval = DirectionChangeInterval;
         StartCoroutine(waitTenSeconds());
        // Push();
@@ -35,8 +36,6 @@ public class EnemyMovement : MonoBehaviour {
     }
 
     // Update is called once per frame
-
-
     void Update ()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -68,12 +67,12 @@ public class EnemyMovement : MonoBehaviour {
     {
         if (start)
         { 
-        float force = Random.Range(MinForce, MaxForce);
-        x = Random.Range(-1f, 1f);
-        y = Random.Range(-1f, 1f);
+            float force = UnityEngine.Random.Range(MinForce, MaxForce);
+            x = UnityEngine.Random.Range(-1f, 1f);
+            y = UnityEngine.Random.Range(-1f, 1f);
 
-        GetComponent<Rigidbody>().AddForce(force * new Vector3(x, y, 0));
-    }
+            GetComponent<Rigidbody>().AddForce(force * new Vector3(x, y, 0));
+        }
     }
 
     void OnTriggerEnter (Collider other)

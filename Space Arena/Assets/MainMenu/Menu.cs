@@ -18,7 +18,7 @@ public class Menu : MonoBehaviour {
         _canvasGroup = GetComponent<CanvasGroup>();
 
         var rect = GetComponent<RectTransform>();
-        rect.position = new Vector2(0, 0);
+//rect.position = new Vector2(0, 0);
         _canvasGroup.interactable = true;
         
 
