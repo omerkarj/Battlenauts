@@ -1,0 +1,307 @@
+[33mcommit aa1d0a15fb64291b1e03166e58213acda3d70e3b[m
+Author: MeGustian <yoro187@gmail.com>
+Date:   Wed Dec 16 21:49:27 2015 +0200
+
+    adding tweens
+
+[33mcommit 58995379953b2a9916041f0a1549b755b044e27b[m
+Merge: 81252a8 ca3b055
+Author: MeGustian <yoro187@gmail.com>
+Date:   Tue Dec 15 17:58:30 2015 +0200
+
+    merging both branches
+
+[33mcommit ca3b05510802c16cc52930943bc8c7954a6cd61c[m
+Author: MeGustian <yoro187@gmail.com>
+Date:   Tue Dec 15 17:56:18 2015 +0200
+
+    inserting enemy model
+
+[33mcommit 0c56e20fbea12479067328e8d5349b447a33cd93[m
+Author: MeGustian <yoro187@gmail.com>
+Date:   Tue Dec 15 17:38:02 2015 +0200
+
+    ..
+
+[33mcommit 81252a802046c71b78e2ff4c256dcac5c7a188bc[m
+Merge: 50fcd8e 0b0db59
+Author: omerkarj <omerkarj@users.noreply.github.com>
+Date:   Tue Dec 15 16:01:30 2015 +0200
+
+    Merge pull request #8 from omerkarj/merger
+    
+    Merger
+
+[33mcommit 0b0db59f0e989c3c59ec7b4a845c42762a27f655[m
+Merge: 4c57774 0246525
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Tue Dec 15 16:00:35 2015 +0200
+
+    merged with HUD
+
+[33mcommit 4c577742b83e647c43d5b095d5342080b44d41f7[m
+Merge: d8c39f9 55626e9
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Tue Dec 15 15:50:04 2015 +0200
+
+    merged player model
+
+[33mcommit 02465252546256c7faec8800d5474429269ee806[m
+Merge: 981f83b 44db5cd
+Author: omer182 <omer182@gmail.com>
+Date:   Tue Dec 15 15:49:43 2015 +0200
+
+    added menus
+
+[33mcommit 981f83bce68d60f9d0a1a8bf0aa48d4ff885c89c[m
+Author: omer182 <omer182@gmail.com>
+Date:   Tue Dec 15 15:39:54 2015 +0200
+
+    added menus
+
+[33mcommit d8c39f98ef15f46eb46a315bcda797384d8d45ce[m
+Merge: 9fe07f0 c2abb67
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Tue Dec 15 15:18:38 2015 +0200
+
+    Merge branch 'feature/player_include_HUD' of https://github.com/omerkarj/spaceArena into merger
+
+[33mcommit 9fe07f043c904f424e6477b989b46f065c6e8911[m
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Tue Dec 15 15:17:58 2015 +0200
+
+    pulling player
+
+[33mcommit c2abb670962ea3ec8684842d25d94941b409937e[m
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Tue Dec 15 13:00:34 2015 +0200
+
+    added GoKit plugin
+
+[33mcommit 34d35984ea8678bb611c27574335b4ff47497373[m
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Mon Dec 14 19:39:09 2015 +0200
+
+    thruster instantiation to allow multiple particles at once
+
+[33mcommit 55626e9c30f15bbb3b54c239b73b94d74755bdc7[m
+Author: Roy Simha <Roy Simha>
+Date:   Sun Dec 13 16:44:56 2015 +0200
+
+    Astronaut colored
+
+[33mcommit 04e1ab33c963b36f661b968d7057ed37544f8e81[m
+Merge: faac292 65578c7
+Author: Roy Simha <Roy Simha>
+Date:   Sun Dec 13 13:55:56 2015 +0200
+
+    added launch
+
+[33mcommit faac2926c2b8872930be8c4c8d8d9c073e949695[m
+Author: Roy Simha <Roy Simha>
+Date:   Sun Dec 13 13:53:08 2015 +0200
+
+    no Floating"
+
+[33mcommit 65578c757b9d0e9e9832f3f2b7aa5be844ad3fa2[m
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Sun Dec 13 03:40:33 2015 +0200
+
+    we have a game
+
+[33mcommit 90ddd120bab0c2ecbb6ec3d6308dd57b086241bc[m
+Author: Roy Simha <Roy Simha>
+Date:   Sun Dec 13 03:25:11 2015 +0200
+
+    Animation to doorss fixed
+
+[33mcommit 44db5cd1315b082459b1a7e768334e15b51575af[m
+Author: omer182 <omer182@gmail.com>
+Date:   Fri Dec 11 14:18:30 2015 +0200
+
+    fixing scripts
+
+[33mcommit 638ab93c2196fb36158994436f5f4e932927969e[m
+Author: omer182 <omer182@gmail.com>
+Date:   Fri Dec 11 14:06:14 2015 +0200
+
+    Add HUD features
+
+[33mcommit 50fcd8e0b0e498a51ee28e324f9175c2b1a6066a[m
+Merge: 6e97bf8 f1b813a
+Author: omerkarj <omerkarj@users.noreply.github.com>
+Date:   Wed Dec 9 22:13:08 2015 +0200
+
+    Merge pull request #6 from omerkarj/merger
+    
+    Merger
+
+[33mcommit f1b813a9b54b035f98eb1de26684db052dc46ec2[m
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Wed Dec 9 22:11:45 2015 +0200
+
+    merged
+
+[33mcommit b2e22713d713563de044b2b2cdb3ac28196f76ca[m
+Merge: 1e425b4 c6b500e
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Wed Dec 9 21:30:33 2015 +0200
+
+    after background - no models
+
+[33mcommit 1e425b4ad733ac2fc0293639ff7eabcaa682be40[m
+Merge: 7052c6f 9b6e755
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Wed Dec 9 21:08:50 2015 +0200
+
+    pulled merger
+
+[33mcommit 7052c6f9d6cae6aee36004d2acda3a2b7c01bf38[m
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Wed Dec 9 21:07:21 2015 +0200
+
+    pulling merger
+
+[33mcommit c6b500e90790c1f0330d5bd1d142d5db97370d5f[m
+Author: Roy Simha <roysimha@Roys-MacBook-Pro-2.local>
+Date:   Wed Dec 9 20:40:02 2015 +0200
+
+    spaceship,missiles,particles
+
+[33mcommit 2ef202abb0d93d44a2d78960fe6cc8f227adaaeb[m
+Merge: 4dd082e 7dc5ff9
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Wed Dec 9 20:21:48 2015 +0200
+
+    merged with enemy
+
+[33mcommit 4dd082e5b8153881712264a94dea7f8191d55e0d[m
+Merge: cd00520 ea66009
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Wed Dec 9 20:16:02 2015 +0200
+
+    fixed conflict
+
+[33mcommit cd00520e9af37a46899964d96a2690cfd6f91632[m
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Sat Dec 5 13:39:54 2015 +0200
+
+    renamed scenes
+
+[33mcommit 7dc5ff9dcf5b46711388ec9f15d0d140b3c97474[m
+Author: MeGustian <yoro187@gmail.com>
+Date:   Wed Dec 9 20:10:39 2015 +0200
+
+    enemy has: random movement, shoots at player, spawn every 7s, destroy after 3 hits
+
+[33mcommit ea6600961733fee74d9e779efe7665a9ebd5bcf3[m
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Wed Dec 9 20:10:13 2015 +0200
+
+    merging!
+
+[33mcommit 04c762ae3f79db9c2443cc7bed4971a9237d25f3[m
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Wed Dec 9 16:35:08 2015 +0200
+
+    shooting
+
+[33mcommit fd5c22b410b534f2c7315092dffb3a7e1c28e9f7[m
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Sun Dec 6 16:37:53 2015 +0200
+
+    player death
+
+[33mcommit 74282513c6a783a8fec79b5e031f059e44ccaf9b[m
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Sun Dec 6 16:15:47 2015 +0200
+
+    player thrusters
+
+[33mcommit 9b6e755feb35fbc790ff73b157fce26d407dfde1[m
+Merge: 42dfb7b 6e97bf8
+Author: omerkarj <omerkarj@users.noreply.github.com>
+Date:   Sat Dec 5 13:40:56 2015 +0200
+
+    Merge pull request #5 from omerkarj/develop
+    
+    Merge pull request #4 from omerkarj/merger
+
+[33mcommit 42dfb7b0d098a0a45043cbcaf72831f30944b9ad[m
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Sat Dec 5 13:39:54 2015 +0200
+
+    renamed scenes
+
+[33mcommit 6e97bf888ec3321ed982f56663afbf4c74c9a2de[m
+Merge: a47cee7 0656e89
+Author: omerkarj <omerkarj@users.noreply.github.com>
+Date:   Sat Dec 5 13:37:56 2015 +0200
+
+    Merge pull request #4 from omerkarj/merger
+    
+    Merger
+
+[33mcommit 0656e89b79b2cc5e8c0f33b18f61209abe416c73[m
+Merge: 6c2e2a3 0555906
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Sat Dec 5 13:27:09 2015 +0200
+
+    weapons pulled
+
+[33mcommit 6c2e2a347abf42c6f3a5217e6fb586f38fd48cdf[m
+Merge: a47cee7 830f43e
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Sat Dec 5 13:25:23 2015 +0200
+
+    background pulled
+
+[33mcommit 0555906be2c0718a1963acfa36a97b78d23ab02e[m
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Sat Dec 5 13:10:09 2015 +0200
+
+    movement fixed, player collision detection, weapons system
+
+[33mcommit c0ca7a8d1a049895d5850397a3c019990540ab22[m
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Wed Dec 2 19:55:06 2015 +0200
+
+    code clarificatin
+
+[33mcommit 2ba0559e7b53af4beab331ca096b6557e4cbcbfe[m
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Tue Dec 1 00:30:05 2015 +0200
+
+    added weapon controller and backfire torque
+
+[33mcommit 5402c2330526cac91327c7f150dd2f83fb9f7a75[m
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Mon Nov 30 22:00:51 2015 +0200
+
+    pushing
+
+[33mcommit bfd2933c5bc9bb03baa8cceffa622bbd35364802[m
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Mon Nov 30 21:29:35 2015 +0200
+
+    applied changes to prefab
+
+[33mcommit 98bff302c890c4a46fa01ce11552dfcee9517dda[m
+Author: omerkarj <omerkarj@gmail.com>
+Date:   Mon Nov 30 20:57:49 2015 +0200
+
+    facing mouse and movement fixed
+
+[33mcommit 830f43e5179e30f38db5402fe4629f94d966c8c8[m
+Author: Roy Simha <Roy Simha>
+Date:   Sat Dec 5 02:56:00 2015 +0200
+
+    spaceship,earth,and player
+
+[33mcommit 09722918615c50c9f2fb839c77750066234ddfc9[m
+Author: omer182 <omer182@gmail.com>
+Date:   Mon Nov 30 18:28:27 2015 +0200
+
+    adding enemy
+
+[33mcommit a47cee777336be7c741041341824
