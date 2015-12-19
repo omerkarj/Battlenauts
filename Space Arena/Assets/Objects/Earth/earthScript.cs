@@ -2,16 +2,16 @@
 using System.Collections;
 
 public class earthScript : MonoBehaviour {
-
+    public float speed;
 	// Use this for initialization
 	void Start () {
 	
 	}
 
     // Update is called once per frame
-    float rotationsPerMinute = 0.3f;
+   
 	void Update () {
 
-        transform.Rotate(new Vector3(0, 6.0F * rotationsPerMinute * Time.deltaTime, 0));
+        transform.Rotate(new Vector3(0, 6.0F * speed * Time.deltaTime, 0));
     }
 }

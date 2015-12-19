@@ -12,7 +12,7 @@ public class explosion : MonoBehaviour {
 
     IEnumerator animate()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(0.8F);
         Destroy(gameObject);
     }
     // Update is called once per frame

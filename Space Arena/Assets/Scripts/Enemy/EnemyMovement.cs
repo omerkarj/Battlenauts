@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour {
     public float MaxForce = 100f;
     public float DirectionChangeInterval = 1f;
     public int healthCounter = 3;
+    
 
 
     private float directionChangeInterval;
@@ -17,6 +18,8 @@ public class EnemyMovement : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        int pathNo = (int) Random.Range(1f, 7f);
+        iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath("EnemyPath" + pathNo), "time", 10));
         directionChangeInterval = DirectionChangeInterval;
         Push();
 	}
@@ -24,6 +27,17 @@ public class EnemyMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        
+        //var dir = player.transform.position - transform.position;
+        //transform.rotation = Quaternion.FromToRotation(transform.pos, dir);
+        
+        if (player != null)
+        {
+            //transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+            transform.LookAt(player.transform.position);
+        }
+
         directionChangeInterval -= Time.deltaTime;
         if (directionChangeInterval < 0)
         {
