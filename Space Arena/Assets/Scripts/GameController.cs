@@ -39,6 +39,6 @@ public class GameController : MonoBehaviour {
         GameObject clone = Instantiate(playerPrefab, Vector3.zero, Quaternion.Euler(new Vector3(0, 180, Random.Range(-20, 20)))) as GameObject;
         playerController = clone.GetComponent<PlayerController>();
         playerMovement = clone.GetComponent<PlayerMovement>();
-        playerController.startEnterAnimation = true;
+        playerMovement.startEnterAnimation = true;
     }
 }
