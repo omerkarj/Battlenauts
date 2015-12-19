@@ -8,21 +8,32 @@ public class EnemyAttack : MonoBehaviour {
 
     private GameObject player;
     private float shotInterval;
+    private bool startShooting = false;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
+        StartCoroutine(couroutineThatWaits());
         shotInterval = ShotInterval;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+    IEnumerator couroutineThatWaits()
+    {
+        yield return new WaitForSeconds(2.5f);
+        startShooting = true;
+    }
+    // Update is called once per frame
+    void Update () {
 
-        shotInterval -= Time.deltaTime;
-        if (shotInterval < 0)
+        if (startShooting)
         {
-            Shoot();
-            shotInterval = ShotInterval;
+            shotInterval -= Time.deltaTime;
+            if (shotInterval < 0)
+            {
+                Shoot();
+                shotInterval = ShotInterval;
+            }
         }
+        
 
 	}
 
