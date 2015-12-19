@@ -16,7 +16,7 @@ public class homingMissile : MonoBehaviour {
 	void Start () {
         missile = gameObject.GetComponent<Rigidbody>();
         missileMod = gameObject;
-		missile.velocity = new Vector3(0, missileVelocity*0.1F*Random.RandomRange(0.8F,1F) , 0);
+		missile.velocity = new Vector3(0, missileVelocity*0.1F*Random.RandomRange(0.8F,1.8F) , 0);
         StartCoroutine(animate());
         Fire();
         missile.angularVelocity = new Vector3(-0.2F, 0, 0);
@@ -59,7 +59,7 @@ public class homingMissile : MonoBehaviour {
 			}
 		}
     }
-    void OnCollisionEnter(Collision theCollision)
+    void OnTriggerEnter(Collider theCollision)
     {
 		if (theCollision.gameObject.tag == "targeted") {
 			destroyMissile();

@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 mousePosition;
     private float rotation;
     public bool isDead;
+    public bool startEnterAnimation;
 
     private Animator astroAnimator;
 
@@ -34,7 +35,10 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
     void Update() {
-        if (!isDead) {
+        if (startEnterAnimation) {
+            StartCoroutine(EnterAnimation());
+        }
+        else if (!isDead) {
             mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z - Camera.main.transform.position.z));
             FaceMousePosition();
 
@@ -152,5 +156,13 @@ public class PlayerMovement : MonoBehaviour {
         weapon.GetComponent<Rigidbody>().velocity = rb.velocity * rand;
         weapon.GetComponent<WeaponController>().enabled = false;
         Destroy(weapon, 20f);
+    }
+
+    IEnumerator EnterAnimation()
+    {
+        transform.position = GameObject.FindGameObjectWithTag("Spaceship").transform.position;
+        transform.positionTo(4f, new Vector3(Random.Range(-2, 2), Random.Range(-2, 2), 0));
+        yield return new WaitForSeconds(4f);
+        startEnterAnimation = false;
     }
 }

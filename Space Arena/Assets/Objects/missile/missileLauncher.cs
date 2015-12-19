@@ -36,13 +36,21 @@ public class missileLauncher : MonoBehaviour
         bool reset = true;
         anim.enabled = true;
         anim.Play("door open"); //play animation
+        float zOffset=0F;
+        float xOffset = 0F;
         yield return new WaitForSeconds(2f);
         if (reset)
         {
             for (int i = 0; i < launchNumber; i++)
             {
-                Vector3 startPosition = new Vector3(transform.position.x - 1 + (i * 0.8F), transform.position.y - 1F, transform.position.z);
+                Vector3 startPosition = new Vector3(transform.position.x - 1 + (xOffset * 0.6F), transform.position.y -1F, transform.position.z+zOffset);
                 Instantiate(missile, startPosition, missile.rotation);
+                xOffset++;
+                if ((i+1)%6 ==0)
+                {
+                    zOffset++;
+                    xOffset = 0;
+                }
             }
             yield return new WaitForSeconds(1F);
 
