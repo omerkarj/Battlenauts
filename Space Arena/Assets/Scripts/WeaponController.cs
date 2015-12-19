@@ -15,16 +15,22 @@ public class WeaponController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //weaponText = GameObject.FindGameObjectWithTag("WeaponText").GetComponent<Text>();
-
         // start the game with a laser gun!
         SwitchWeapon(Weapons.laserGun);  
 	}
-	
+
+    void Update()
+    {
+        // position the weapon in the player's had and point it towards the mouse pointer
+        Transform playerHand = GameObject.FindGameObjectWithTag("PlayerHand").transform;
+        transform.position = new Vector3(playerHand.position.x + 0.1f, playerHand.position.y + 0.02f, playerHand.position.z - 0.3f);
+        Transform playerWeaponArm = GameObject.FindGameObjectWithTag("PlayerWeaponArm").GetComponent<Transform>();
+        transform.localEulerAngles = new Vector3(-playerWeaponArm.localEulerAngles.z + 180, 180, 0);
+    }
+
 	void FixedUpdate () {
         // update weapon name in HUD
         string weaponName = stats.name;
-        //weaponText.text = "Current Weapon: " + weaponName;
 
         // Trigger weapon shot
         if (Input.GetMouseButtonDown(0) && Time.time > nextFire)

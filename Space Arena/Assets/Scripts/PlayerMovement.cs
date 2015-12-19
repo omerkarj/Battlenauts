@@ -16,12 +16,12 @@ public class PlayerMovement : MonoBehaviour {
     private Transform thrusterPos;
     private Vector3 mousePosition;
     private float rotation;
-    private bool isDead;
+    public bool isDead;
 
     private Animator astroAnimator;
 
-    enum Facing { left, right };
-    private Facing facing = Facing.right;
+    public enum Facing { left, right };
+    public Facing facing = Facing.right;
 
 	// Use this for initialization
 	void Start () {
@@ -62,13 +62,10 @@ public class PlayerMovement : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
                 SpeedBurst(Vector3.down, -1, true);
 
-            // point weapon towards mouse cursor
-            GameObject weapon = GameObject.FindGameObjectWithTag("Weapon");
-            weapon.transform.LookAt(mousePosition);
-
             // Trigger weapon backfire
             if (Input.GetMouseButtonDown(0))
             {
+                GameObject weapon = GameObject.FindGameObjectWithTag("Weapon");
                 Vector3 dir = -(new Vector3(mousePosition.x, mousePosition.y, mousePosition.z)
                     - new Vector3(transform.position.x, transform.position.y, transform.position.z)).normalized;
                 float weaponForce = weapon.GetComponent<WeaponController>().stats.force;
@@ -128,6 +125,17 @@ public class PlayerMovement : MonoBehaviour {
         else if (facing == Facing.left && currentYRotation < MAX_Y_ROTATION) {
             model.localEulerAngles = Vector3.Slerp(model.localEulerAngles, new Vector3(0, MAX_Y_ROTATION, 0), Time.deltaTime * 1.6f);    
         }
+
+        // Point the player arm towards mouse cursor
+        GameObject weaponArm = GameObject.FindGameObjectWithTag("PlayerWeaponArm");
+        float mouseArmAngle = (Mathf.Atan2(
+                mousePosition.y - weaponArm.transform.position.y,
+                mousePosition.x - weaponArm.transform.position.x) - Mathf.PI / 2) * Mathf.Rad2Deg;
+        float zDir = (facing == Facing.right) ? 1 : -1;
+        float zDiff = (facing == Facing.right) ? 180 : 0;
+        float weaponArmZAngle = (mouseArmAngle + 90) * zDir + zDiff;
+        weaponArm.transform.eulerAngles = new Vector3(weaponArm.transform.eulerAngles.x, weaponArm.transform.eulerAngles.y, weaponArmZAngle);
+        weaponArm.transform.localEulerAngles = new Vector3(13f, 85f, weaponArm.transform.localEulerAngles.z);
     }
 
     // Kills the astronaut
@@ -135,5 +143,14 @@ public class PlayerMovement : MonoBehaviour {
         isDead = true;
         rb.angularDrag = 0;
         rb.drag = 0;
+        if (rb.velocity.magnitude < 5)
+            rb.AddForce(new Vector3(Random.Range(5, 20), Random.Range(5, 20), Random.Range(5, 20)));
+        
+        GameObject weapon = GameObject.FindGameObjectWithTag("Weapon");
+        weapon.transform.parent = null;
+        float rand = Random.Range(0, 0.5f);
+        weapon.GetComponent<Rigidbody>().velocity = rb.velocity * rand;
+        weapon.GetComponent<WeaponController>().enabled = false;
+        Destroy(weapon, 20f);
     }
 }

@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject spaceship;
 
     private WeaponController weaponController;
+    public bool startEnterAnimation;
     
 	// Use this for initialization
 	void Start () {
@@ -15,8 +16,11 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
-       
+        if (startEnterAnimation)
+        {
+            StartCoroutine(EnterAnimation());
+            startEnterAnimation = false;
+        }
 	}
 
     void FixedUpdate() {
@@ -28,7 +32,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     void OnTriggerEnter (Collider other) {
-        //Debug.Log("touched: " + other.gameObject.tag);
         switch (other.gameObject.tag) {
             // Weapon pickups
             case "WeaponDrop-LaserGun":
@@ -38,7 +41,15 @@ public class PlayerController : MonoBehaviour {
                 weaponController.SwitchWeapon(WeaponController.Weapons.alienWeapon);
                 break;
         }
-        if (other.gameObject.tag != "PlayerShot")
+        if (other.gameObject.tag != "PlayerShot" && other.gameObject.tag != "target")
             Destroy(other.gameObject);
+    }
+
+    IEnumerator EnterAnimation()
+    {
+        transform.position = GameObject.FindGameObjectWithTag("Spaceship").transform.position;
+        Go.to(transform, 5f, new GoTweenConfig().position(new Vector3(Random.Range(-2, 2), Random.Range(-2, 2), 0)));
+        Debug.Log("started animation");
+        yield return new WaitForSeconds(5);
     }
 }
