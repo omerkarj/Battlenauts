@@ -59,7 +59,7 @@ public class homingMissile : MonoBehaviour {
 			}
 		}
     }
-    void OnCollisionEnter(Collision theCollision)
+    void OnTriggerEnter(Collider theCollision)
     {
 		if (theCollision.gameObject.tag == "targeted") {
 			destroyMissile();

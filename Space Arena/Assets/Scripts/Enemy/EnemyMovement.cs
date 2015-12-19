@@ -8,13 +8,15 @@ public class EnemyMovement : MonoBehaviour {
     public float MaxForce = 100f;
     public float DirectionChangeInterval = 1f;
     public int healthCounter = 3;
-    
-
+    public int damageReward = 10;
+    public int killReward = 50;
+    //Particle Effects when hit and detroyed
+    public Transform explosionParticles;
+    public Transform hitParticles;
 
     private float directionChangeInterval;
     private float x;
     private float y;
-
     // Use this for initialization
     void Start ()
     {
@@ -25,6 +27,8 @@ public class EnemyMovement : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
+
+
 	void Update ()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -64,16 +68,32 @@ public class EnemyMovement : MonoBehaviour {
 
     void OnTriggerEnter (Collider other)
     {
-        Debug.Log("Collided!!");
         if (other.gameObject.tag == "PlayerShot")
         {
             healthCounter--;
+            Instantiate(hitParticles, other.transform.position, Quaternion.identity);
+            Destroy(other.gameObject);
+            addScore(damageReward);
+
         }
 
         // Check if enemy is dead
-        if (healthCounter == 0 || other.gameObject.tag == "Missile")
+        if (healthCounter == 0 )
         {
             Destroy(gameObject);
+            Instantiate(explosionParticles, other.transform.position, Quaternion.identity);
+            addScore(killReward);
         }
+        if (other.gameObject.tag == "Missile")
+        {
+            Destroy(gameObject);
+            addScore(killReward);
+        }
+    }
+
+    void addScore(int value)
+    {
+       PlayerScore ps= GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScore>();
+        ps.updateScore(value);
     }
 }

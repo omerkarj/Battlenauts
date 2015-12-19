@@ -4,15 +4,14 @@ using System.Collections;
 public class explosion : MonoBehaviour {
 
     // Use this for initialization
-    public ParticleSystem ps;
+    public float destroyDelay=0.8F;
 	void Start () {
-        ps.Emit(100);
         StartCoroutine(animate());
 	}
 
     IEnumerator animate()
     {
-        yield return new WaitForSeconds(0.8F);
+        yield return new WaitForSeconds(destroyDelay);
         Destroy(gameObject);
     }
     // Update is called once per frame
