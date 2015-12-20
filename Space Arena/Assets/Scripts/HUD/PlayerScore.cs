@@ -6,7 +6,7 @@ public class PlayerScore : MonoBehaviour {
 
     // Use this for initialization
     public int Score;
-	private int powerUpCounter;
+	public int powerUpCounter;
     public Text scoreText;
 	public int pointsForPowerUp=1000;
 	void Start () {
@@ -26,11 +26,15 @@ public class PlayerScore : MonoBehaviour {
 		AddpowerUp (addValue);
     }
 	private void AddpowerUp(int addValue){
-		powerUpCounter += addValue;
+		SpecialPower sp = gameObject.GetComponent<SpecialPower> ();
+
 		if (powerUpCounter >= pointsForPowerUp) {
-			powerUpCounter=0;
-			Debug.Log("power up is ready");
-			gameObject.GetComponent<PlayerController>().isPowerupOn=true;
+			sp.PowerUp (pointsForPowerUp, pointsForPowerUp);
+			Debug.Log ("power up is ready");
+			gameObject.GetComponent<PlayerController> ().isPowerupOn = true;
+		} else {
+			sp.PowerUp (powerUpCounter, pointsForPowerUp);
+			powerUpCounter += addValue;
 		}
 	}
 }

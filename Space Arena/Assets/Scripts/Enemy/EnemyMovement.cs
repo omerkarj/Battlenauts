@@ -96,7 +96,6 @@ public class EnemyMovement : MonoBehaviour {
         if (other.gameObject.tag == "Missile")
         {
             Destroy(gameObject);
-            addScore(killReward);
         }
     }
 

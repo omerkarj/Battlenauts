@@ -26,6 +26,9 @@ public class PlayerController : MonoBehaviour {
            	 Debug.Log(spaceship.GetComponent<missileLauncher>().launchNumber + " missiles launched!");
             	spaceship.GetComponent<missileLauncher>().startLaunch = true;
 				isPowerupOn=false;
+				GameObject player=GameObject.FindGameObjectWithTag("Player");
+				player.GetComponent<PlayerScore>().powerUpCounter=0;
+				player.GetComponent<SpecialPower>().PowerUp(0,player.GetComponent<PlayerScore>().pointsForPowerUp);
 			}
         }
     }
