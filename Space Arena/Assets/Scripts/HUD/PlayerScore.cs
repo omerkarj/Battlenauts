@@ -20,6 +20,6 @@ public class PlayerScore : MonoBehaviour {
     {
         Score += addValue;
         scoreText.text = "Score: " + Score;
-
+        gameObject.GetComponent<SpecialPower>().PowerUp();
     }
 }

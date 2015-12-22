@@ -52,6 +52,7 @@ public class homingMissile : MonoBehaviour {
         GameObject go = GameObject.FindGameObjectWithTag("target");
 		if (go != null) {
 			go.tag = "targeted";
+
 			float diff = (go.transform.position - transform.position).sqrMagnitude;
 			if (diff < distance) {
 				distance = diff;

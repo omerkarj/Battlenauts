@@ -40,11 +40,7 @@ public class PlayerHealth : MonoBehaviour {
             
         healthText.text = "" + currentHealth;
         float currentYvalue = MapValues(currentHealth, 0, maxHealth, minY, maxY);
-        //for (int i = 0; i < healthBar.position.y - currentYvalue; i++)
-        //{
             healthBar.position = new Vector3(xPos, currentYvalue);
-        //}
-
         if (currentHealth > maxHealth / 2) //More then 50% health
         {
           visualHealth.color = new Color32((byte)MapValues(currentHealth, maxHealth / 2, maxHealth, 255, 0), 255, 0, 75);

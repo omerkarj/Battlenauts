@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
+
 
 public class EnemyMovement : MonoBehaviour {
 
@@ -14,20 +16,21 @@ public class EnemyMovement : MonoBehaviour {
     //Particle Effects when hit and detroyed
     public Transform explosionParticles;
     public Transform hitParticles;
-
     private float directionChangeInterval;
     private float x;
     private float y;
     private bool start = false;
+
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         int pathNo = (int)UnityEngine.Random.Range(1f, 7f);
+        
         iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath("EnemyPath" + pathNo), "time", 10));
         directionChangeInterval = DirectionChangeInterval;
         StartCoroutine(waitTenSeconds());
-       // Push();
-	}
+        
+    }
 
     private IEnumerator waitTenSeconds()
     {
@@ -38,11 +41,8 @@ public class EnemyMovement : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+        
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        
-        //var dir = player.transform.position - transform.position;
-        //transform.rotation = Quaternion.FromToRotation(transform.pos, dir);
-        
         if (player != null)
         {
             //transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
@@ -59,10 +59,10 @@ public class EnemyMovement : MonoBehaviour {
         pos.x = Mathf.Clamp(pos.x, 0.1f, 0.9f);
         pos.y = Mathf.Clamp(pos.y, 0.1f, 0.9f);
         transform.position = Camera.main.ViewportToWorldPoint(pos);
-
-
     }
 
+ 
+    
     void Push()
     {
         if (start)
@@ -89,6 +89,7 @@ public class EnemyMovement : MonoBehaviour {
         // Check if enemy is dead
         if (healthCounter == 0 )
         {
+
             Destroy(gameObject);
             Instantiate(explosionParticles, other.transform.position, Quaternion.identity);
             addScore(killReward);
@@ -97,6 +98,8 @@ public class EnemyMovement : MonoBehaviour {
         {
             Destroy(gameObject);
             addScore(killReward);
+            gameObject.GetComponent<TargetLock>().Destroy();
+            
         }
     }
 
