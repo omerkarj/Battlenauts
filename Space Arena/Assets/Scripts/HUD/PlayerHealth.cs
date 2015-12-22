@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour {
     private float xPos;
     private float maxY;
     private float minY;
-    private int currentHealth;
+    public int currentHealth;
     public int maxHealth;
     public Text healthText;
     public Image visualHealth;
