@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour {
     private float xPos;
     private float maxY;
     private float minY;
-    private int currentHealth;
+    public int currentHealth;
     public int maxHealth;
     public Text healthText;
     public Image visualHealth;
@@ -74,6 +74,8 @@ public class PlayerHealth : MonoBehaviour {
                 break;
             // Collision with enemy / asteroid
             case "target":
+                currentHealth -= Random.Range(10, 15);
+                break;
             case "Asteroid":
                 currentHealth -= Random.Range(10, 20);
                 break;
