@@ -5,7 +5,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
     public GameObject spaceship;
-
+	public bool isPowerupOn=false;
     private WeaponController weaponController;
     
 	// Use this for initialization
@@ -19,10 +19,17 @@ public class PlayerController : MonoBehaviour {
 	}
 
     void FixedUpdate() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            spaceship.GetComponent<missileLauncher>().launchNumber = GameObject.FindGameObjectsWithTag("target").Length;
-            Debug.Log(spaceship.GetComponent<missileLauncher>().launchNumber + " missiles launched!");
-            spaceship.GetComponent<missileLauncher>().startLaunch = true;
+		if(isPowerupOn){
+
+        	if (Input.GetKeyDown(KeyCode.Space)) {
+           	 spaceship.GetComponent<missileLauncher>().launchNumber = GameObject.FindGameObjectsWithTag("target").Length;
+           	 Debug.Log(spaceship.GetComponent<missileLauncher>().launchNumber + " missiles launched!");
+            	spaceship.GetComponent<missileLauncher>().startLaunch = true;
+				isPowerupOn=false;
+				GameObject player=GameObject.FindGameObjectWithTag("Player");
+				player.GetComponent<PlayerScore>().powerUpCounter=0;
+				player.GetComponent<SpecialPower>().PowerUp(0,player.GetComponent<PlayerScore>().pointsForPowerUp);
+			}
         }
     }
 

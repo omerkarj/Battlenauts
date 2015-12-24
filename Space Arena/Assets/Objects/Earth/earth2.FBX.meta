@@ -1,0 +1,208 @@
+fileFormatVersion: 2
+guid: 6f593d16c3fd7b0478fdcf50ab6ba736
+timeCreated: 1450900646
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: atmosphere
+    100002: Circle001
+    100004: Circle002
+    100006: Clouds
+    100008: //RootNode
+    100010: Malaron-7
+    100012: Plane001
+    100014: smallAsteroid
+    100016: smallAsteroid001
+    100018: smallAsteroid002
+    100020: smallAsteroid003
+    100022: smallAsteroid004
+    100024: smallAsteroid005
+    100026: smallAsteroid006
+    100028: smallAsteroid007
+    100030: Sphere001
+    400000: atmosphere
+    400002: Circle001
+    400004: Circle002
+    400006: Clouds
+    400008: //RootNode
+    400010: Malaron-7
+    400012: Plane001
+    400014: smallAsteroid
+    400016: smallAsteroid001
+    400018: smallAsteroid002
+    400020: smallAsteroid003
+    400022: smallAsteroid004
+    400024: smallAsteroid005
+    400026: smallAsteroid006
+    400028: smallAsteroid007
+    400030: Sphere001
+    2300000: atmosphere
+    2300002: Circle001
+    2300004: Circle002
+    2300006: Clouds
+    2300008: Malaron-7
+    2300010: Plane001
+    2300012: smallAsteroid
+    2300014: smallAsteroid001
+    2300016: smallAsteroid002
+    2300018: smallAsteroid003
+    2300020: smallAsteroid004
+    2300022: smallAsteroid005
+    2300024: smallAsteroid006
+    2300026: smallAsteroid007
+    2300028: Sphere001
+    3300000: atmosphere
+    3300002: Circle001
+    3300004: Circle002
+    3300006: Clouds
+    3300008: Malaron-7
+    3300010: Plane001
+    3300012: smallAsteroid
+    3300014: smallAsteroid001
+    3300016: smallAsteroid002
+    3300018: smallAsteroid003
+    3300020: smallAsteroid004
+    3300022: smallAsteroid005
+    3300024: smallAsteroid006
+    3300026: smallAsteroid007
+    3300028: Sphere001
+    4300000: Sphere001
+    4300002: Clouds
+    4300004: atmosphere
+    4300006: Plane001
+    4300008: Malaron-7
+    4300010: smallAsteroid
+    4300012: Circle001
+    4300014: smallAsteroid001
+    4300016: smallAsteroid002
+    4300018: smallAsteroid003
+    4300020: Circle002
+    4300022: smallAsteroid004
+    4300024: smallAsteroid005
+    4300026: smallAsteroid006
+    4300028: smallAsteroid007
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: atmosphere
+        weight: 1
+      - path: Circle001
+        weight: 1
+      - path: Circle002
+        weight: 1
+      - path: Clouds
+        weight: 1
+      - path: Malaron-7
+        weight: 1
+      - path: Plane001
+        weight: 1
+      - path: smallAsteroid
+        weight: 1
+      - path: smallAsteroid001
+        weight: 1
+      - path: smallAsteroid002
+        weight: 1
+      - path: smallAsteroid003
+        weight: 1
+      - path: smallAsteroid004
+        weight: 1
+      - path: smallAsteroid005
+        weight: 1
+      - path: smallAsteroid006
+        weight: 1
+      - path: smallAsteroid007
+        weight: 1
+      - path: Sphere001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

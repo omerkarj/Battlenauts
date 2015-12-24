@@ -19,6 +19,7 @@ public class EnemyMovement : MonoBehaviour {
     private float x;
     private float y;
     private bool start = false;
+    //
     // Use this for initialization
     void Start ()
     {
@@ -96,7 +97,6 @@ public class EnemyMovement : MonoBehaviour {
         if (other.gameObject.tag == "Missile")
         {
             Destroy(gameObject);
-            addScore(killReward);
         }
     }
 

@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         scoreCounter = 1;
-        InvokeRepeating("SpawnWeapon", 0, 5f);
+        //InvokeRepeating("SpawnWeapon", 0, 5f);
 	}
 
     // Update is called once per frame
