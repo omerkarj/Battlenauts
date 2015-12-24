@@ -11,7 +11,7 @@ public class WeaponController : MonoBehaviour {
     private Weapons currentWeapon;
     private float nextFire;
 
-    public enum Weapons { laserGun, alienWeapon,gravityGun, rocketLauncher };
+    public enum Weapons { laserGun, alienWeapon, gravityGun, rocketLauncher };
 
 	// Use this for initialization
 	void Start () {
