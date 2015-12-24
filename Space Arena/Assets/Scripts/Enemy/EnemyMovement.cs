@@ -103,6 +103,7 @@ public class EnemyMovement : MonoBehaviour {
     void addScore(int value)
     {
        PlayerScore ps= GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScore>();
-        ps.updateScore(value);
+        if (ps != null)
+            ps.updateScore(value);
     }
 }
