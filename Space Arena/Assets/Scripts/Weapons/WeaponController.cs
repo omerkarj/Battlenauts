@@ -16,7 +16,7 @@ public class WeaponController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         // start the game with a laser gun!
-        SwitchWeapon(Weapons.gravityGun);  
+        SwitchWeapon(Weapons.laserGun);  
 	}
 
     void Update()
