@@ -74,6 +74,8 @@ public class PlayerHealth : MonoBehaviour {
                 break;
             // Collision with enemy / asteroid
             case "target":
+                currentHealth -= Random.Range(10, 15);
+                break;
             case "Asteroid":
                 currentHealth -= Random.Range(10, 20);
                 break;
