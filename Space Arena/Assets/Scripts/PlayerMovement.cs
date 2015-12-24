@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour {
     private float rotation;
     public bool isDead;
     public bool startEnterAnimation;
+    private bool inEnterAnimation = false;
 
     private Animator astroAnimator;
 
@@ -36,7 +37,17 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
     void Update() {
         if (startEnterAnimation) {
-            StartCoroutine(EnterAnimation());
+            if (!inEnterAnimation)
+            {
+                inEnterAnimation = true;
+                rb.constraints = RigidbodyConstraints.None;
+                model.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                transform.position = GameObject.FindGameObjectWithTag("Spaceship").transform.position;
+                iTween.MoveTo(gameObject, iTween.Hash(
+                    "position", new Vector3(Random.Range(-2, 2), Random.Range(-2, 2), 0f),
+                    "oncomplete", "OnStartAnimComplete", 
+                    "time", 10f));
+            }
         }
         else if (!isDead) {
             mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z - Camera.main.transform.position.z));
@@ -55,7 +66,7 @@ public class PlayerMovement : MonoBehaviour {
     }
  
     void FixedUpdate() {
-        if (!isDead) {
+        if (!isDead && !startEnterAnimation) {
             // Trigger speed burst on movement key press
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
                 SpeedBurst(Vector3.left, 1, true);
@@ -103,6 +114,7 @@ public class PlayerMovement : MonoBehaviour {
             GameObject thruster = Instantiate(thrusterPrefab, thrusterPos.position, Quaternion.identity) as GameObject;
             thruster.gameObject.transform.LookAt(-input * 100);
             thruster.GetComponent<ParticleSystem>().Play();
+            thruster.GetComponent<AudioSource>().Play();
             Destroy(thruster, 2f);
         }
     }
@@ -155,14 +167,27 @@ public class PlayerMovement : MonoBehaviour {
         float rand = Random.Range(0, 0.5f);
         weapon.GetComponent<Rigidbody>().velocity = rb.velocity * rand;
         weapon.GetComponent<WeaponController>().enabled = false;
-        Destroy(weapon, 20f);
     }
 
-    IEnumerator EnterAnimation()
+    // Resets the player (new game)
+    public void ResetPlayer()
     {
-        transform.position = GameObject.FindGameObjectWithTag("Spaceship").transform.position;
-        transform.positionTo(4f, new Vector3(Random.Range(-2, 2), Random.Range(-2, 2), 0));
-        yield return new WaitForSeconds(4f);
-        startEnterAnimation = false;
+        GameObject weapon = GameObject.FindGameObjectWithTag("Weapon");
+        PlayerHealth playerHealth = gameObject.GetComponent<PlayerHealth>();
+
+        weapon.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        weapon.GetComponent<WeaponController>().enabled = true;
+        weapon.transform.SetParent(GameObject.FindGameObjectWithTag("PlayerModel").transform);
+        playerHealth.currentHealth = playerHealth.maxHealth;
+        isDead = false;
+        startEnterAnimation = true;
     }
+
+    void OnStartAnimComplete()
+    {
+        startEnterAnimation = false;
+        inEnterAnimation = false;
+        rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+    }
+
 }

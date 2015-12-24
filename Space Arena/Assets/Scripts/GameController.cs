@@ -40,6 +40,9 @@ public class GameController : MonoBehaviour {
             }
             pauseToggle = !pauseToggle;
         }
+
+        if (Input.GetKeyDown(KeyCode.N))
+            playerMovement.ResetPlayer();
     }
 
     private void SpawnWeapon()
