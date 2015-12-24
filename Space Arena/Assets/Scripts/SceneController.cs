@@ -41,21 +41,23 @@ public class SceneController : MonoBehaviour {
 
         if (spaceshipThrustersOn)
         {
-            if (spaceshipThrustersDelay >= 24)
+            if (spaceshipThrustersDelay >= 60)
             {
                 spaceshipThruster1.Play();
                 spaceshipThruster2.Play();
-                spaceshipThrustersDelay = 0;
+                spaceshipThruster1.gameObject.GetComponent<AudioSource>().Play();
+                spaceshipThrustersDelay = Mathf.RoundToInt(Random.Range(0, 48));
             }
             else {
                 spaceshipThrustersDelay++;
             }
         }
         if (astroThrusterOn) {
-            if (astroThrusterDelay >= 24)
+            if (astroThrusterDelay >= 48)
             {
                 astroThruster.Play();
-                astroThrusterDelay = 0;
+                astroThruster.gameObject.GetComponent<AudioSource>().Play();
+                astroThrusterDelay = Mathf.RoundToInt(Random.Range(0, 24));
             }
             else {
                 astroThrusterDelay++;
@@ -84,7 +86,7 @@ public class SceneController : MonoBehaviour {
                     "easeType", "easeOutQuad",
                     "time", 10f));
         // fade logo in and out
-        logoBG.CrossFadeAlpha( 0.2f, 7f, false );
+        logoBG.CrossFadeAlpha( 0.4f, 7f, false );
         logo.CrossFadeAlpha(1f, 7f, false);
         yield return new WaitForSeconds(7);
         logoBG.CrossFadeAlpha(0f, 3f, false);
@@ -116,14 +118,15 @@ public class SceneController : MonoBehaviour {
                     "easeType", "easeOutQuad",
                     "time", 4f));
         yield return new WaitForSeconds(4);
+        astroThrusterOn = false;
+
         // audio - "Spotted some debris, better be careful"
         PlayNextClip();
         iTween.RotateTo(astro, iTween.Hash(
                     "rotation", new Vector3(0, 180, 0),
                     "easeType", "easeOutQuad",
-                    "time", 6f));
-        yield return new WaitForSeconds(6);
-        astroThrusterOn = false;
+                    "time", 8f));
+        yield return new WaitForSeconds(8);
 
         // astronaut head up to Z=0
         astroThrusterOn = true;
@@ -137,7 +140,7 @@ public class SceneController : MonoBehaviour {
                     "looktarget", astro.transform,
                     "easeType", "easeOutQuad",
                     "time", 13f));
-
+        yield return new WaitForSeconds(2);
         enemySpawner.SetActive(true);
         yield return new WaitForSeconds(2);
         // audio - "We are under attack!"
@@ -146,7 +149,7 @@ public class SceneController : MonoBehaviour {
         yield return new WaitForSeconds(5);
         // launch missiles
         spaceship.GetComponent<missileLauncher>().startLaunch = true;
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         astroThrusterOn = false;
 
         // camera rotates to face the game scene and initiate game

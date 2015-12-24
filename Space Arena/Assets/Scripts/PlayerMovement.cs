@@ -114,6 +114,7 @@ public class PlayerMovement : MonoBehaviour {
             GameObject thruster = Instantiate(thrusterPrefab, thrusterPos.position, Quaternion.identity) as GameObject;
             thruster.gameObject.transform.LookAt(-input * 100);
             thruster.GetComponent<ParticleSystem>().Play();
+            thruster.GetComponent<AudioSource>().Play();
             Destroy(thruster, 2f);
         }
     }
