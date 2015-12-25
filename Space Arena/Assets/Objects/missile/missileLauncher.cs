@@ -31,7 +31,7 @@ public class missileLauncher : MonoBehaviour
 
     IEnumerator fireAndAnimate()
     {
-        transform.position = startPosition;
+        //transform.position = startPosition;
         r.velocity = Vector3.zero;
         bool reset = true;
         anim.enabled = true;

@@ -7,19 +7,19 @@ public class Enemy2Movement : MonoBehaviour {
     public float MinForce = 40f;
     public float MaxForce = 100f;
     public float DirectionChangeInterval = 1f;
-    public int healthCounter = 6;
+    public int healthCounter = 8;
     public GameObject Child;
+    public int damageReward = 10;
+    public int killReward = 100;
+    public Transform explosionParticles;
+    public Transform hitParticles;
 
-
-    private bool edgeDown = false;
-    private bool edgeUp = false;
-    private float directionChangeInterval;
     private float x;
     private float y;
 
     // Use this for initialization
     void Start () {
-        directionChangeInterval = DirectionChangeInterval;    
+           
         StartCoroutine(couroutineThatWaits());
         StartCoroutine(movementCoroutine());
     }
@@ -28,17 +28,24 @@ public class Enemy2Movement : MonoBehaviour {
     {
         while (true)
         {
-            iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath("Enemy2Path"), "time", 5));
-            yield return new WaitForSeconds(5f);
+            if (transform.position.y > 3) { 
+                iTween.MoveBy(gameObject, new Vector3(0, -9,0), 4f);
+            }
+            else 
+            {
+                iTween.MoveBy(gameObject, new Vector3(0, Random.Range(3f,7f), 0), 2f);
+            }
+            yield return new WaitForSeconds(4f);
+
         }
 
     }
     IEnumerator couroutineThatWaits()
     {
         yield return new WaitForSeconds(3f);
-        for (int i = 0; i < 3; i++)
+        while (true)
         {
-            Instantiate(Child, transform.position + new Vector3(-1, -1, 0), new Quaternion());
+            Instantiate(Child, transform.position + new Vector3(-2, 0, 0), new Quaternion());
             yield return new WaitForSeconds(3f);
         }
         
@@ -50,17 +57,6 @@ public class Enemy2Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-        //var dir = player.transform.position - transform.position;
-        //transform.rotation = Quaternion.FromToRotation(transform.pos, dir);
-
-        if (player != null)
-        {
-            //transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
-            transform.LookAt(player.transform.position);
-        }
-
         Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
         pos.x = Mathf.Clamp(pos.x, 0.1f, 0.9f);
         pos.y = Mathf.Clamp(pos.y, 0.1f, 0.9f);
@@ -69,29 +65,36 @@ public class Enemy2Movement : MonoBehaviour {
 
     }
 
-    void Push()
-    {
-        float force = UnityEngine.Random.Range(MinForce, MaxForce);
-        x = UnityEngine.Random.Range(-1f, 1f);
-        y = UnityEngine.Random.Range(-1f, 1f);
-
-        GetComponent<Rigidbody>().AddForce(force * new Vector3(x, y, 0));
-
-    }
-
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collided!!");
+
         if (other.gameObject.tag == "PlayerShot")
         {
+            
             healthCounter--;
+            Instantiate(hitParticles, other.transform.position, Quaternion.identity);
+            Destroy(other.gameObject);
+            addScore(damageReward);
+
         }
 
-       
         // Check if enemy is dead
-        if (healthCounter == 0 || other.gameObject.tag == "Missile")
+        if (healthCounter == 0)
         {
             Destroy(gameObject);
+            Instantiate(explosionParticles, other.transform.position, Quaternion.identity);
+            addScore(killReward);
         }
+        if (other.gameObject.tag == "Missile")
+        {
+            Destroy(gameObject);
+            addScore(killReward);
+        }
+    }
+
+    void addScore(int value)
+    {
+        PlayerScore ps = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScore>();
+        ps.updateScore(value);
     }
 }
