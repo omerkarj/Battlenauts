@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+//using System;
 
 public class GameController : MonoBehaviour {
 
@@ -14,13 +15,14 @@ public class GameController : MonoBehaviour {
     public Image pauseMenu;
     public int nextScoreLevel=500;
     private int scoreCounter;
+    public Text difficultyText;
 
     // Use this for initialization
     void Start () {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         scoreCounter = 1;
-        InvokeRepeating("SpawnWeapon", 0, 5f);
+        //InvokeRepeating("SpawnWeapon", 0, 5f);
 	}
 
     // Update is called once per frame
@@ -73,9 +75,17 @@ public class GameController : MonoBehaviour {
             //Increase here enemy spawn and difficulties
             scoreCounter++;
             nextScoreLevel += 50;
+            StartCoroutine(diffcultyUpText());
             Debug.Log("next Score Level:" + nextScoreLevel);
             reduceSpawnTime();
         }
+    }
+
+    private IEnumerator diffcultyUpText()
+    {
+        difficultyText.text = "Difficulty Up!";
+        yield return new WaitForSeconds(1.5f);
+        difficultyText.text = "";
     }
 
     private void reduceSpawnTime()

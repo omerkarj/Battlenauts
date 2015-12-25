@@ -12,7 +12,7 @@ public class PlayerHealth : MonoBehaviour {
     public int maxHealth;
     public Text healthText;
     public Image visualHealth;
-
+    public Transform visualDamage;
 
 
     // Use this for initialization
@@ -70,10 +70,13 @@ public class PlayerHealth : MonoBehaviour {
                 break;
             // Hit by enemy shot
             case "EnemyShot":
+                Instantiate(visualDamage, transform.position, Quaternion.identity);
                 currentHealth -= Random.Range(5, 10);
                 break;
             // Collision with enemy / asteroid
             case "target":
+                currentHealth -= Random.Range(10, 15);
+                break;
             case "Asteroid":
                 currentHealth -= Random.Range(10, 20);
                 break;
