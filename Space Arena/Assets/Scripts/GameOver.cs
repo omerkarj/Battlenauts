@@ -17,5 +17,6 @@ public class GameOver : MonoBehaviour {
         PlayerHealth ph = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         if (ph.currentHealth <= 0)
             anim.SetTrigger("gameOver");
+
 	}
 }
