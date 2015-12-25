@@ -4,16 +4,23 @@ using System.Collections;
 
 public class PlayerScore : MonoBehaviour {
 
-    // Use this for initialization
-    public int Score;
-	public int powerUpCounter;
+    public int score;
+    public int powerUpCounter;
     public Text scoreText;
-	public int pointsForPowerUp=1000;
+    public int pointsForPowerUp = 1000;
+    public AudioClip newHighScore;
+    
+    private AudioSource audioSource;
+    private int highScore;
+
+    // Use this for initialization
 	void Start () {
-        Score = 0;
+        audioSource = GetComponent<AudioSource>();
+
+        score = 0;
         updateScore(0);
 		powerUpCounter = 0;
- 
+        highScore = PlayerPrefs.HasKey("HighScore") ? PlayerPrefs.GetInt("HighScore") : 0;
 	}
 	
 	// Update is called once per frame
@@ -21,8 +28,16 @@ public class PlayerScore : MonoBehaviour {
 	}
    public void updateScore(int addValue)
     {
-        Score += addValue;
-        scoreText.text = "Score: " + Score;
+        score += addValue;
+        scoreText.text = "Score: " + score;
+
+        if (highScore > 0 && score > highScore)
+        {
+            audioSource.clip = newHighScore;
+            audioSource.Play();
+            //PlayerPrefs.SetInt("HighScore", score);
+        }
+
 		AddpowerUp (addValue);
     }
 	private void AddpowerUp(int addValue){

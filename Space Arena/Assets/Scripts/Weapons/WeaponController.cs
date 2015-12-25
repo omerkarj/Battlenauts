@@ -6,15 +6,20 @@ public class WeaponController : MonoBehaviour {
 
     public WeaponStats stats;
     public Transform[] projectile;
+    public AudioClip[] weaponNames;
+    public AudioClip weaponPickup;
 
     private Text weaponText;
     private Weapons currentWeapon;
     private float nextFire;
+    private AudioSource audioSource;
 
     public enum Weapons { laserGun, alienWeapon, gravityGun, rocketLauncher };
 
 	// Use this for initialization
 	void Start () {
+        audioSource = gameObject.GetComponent<AudioSource>();
+
         // start the game with a laser gun!
         SwitchWeapon(Weapons.laserGun);  
 	}
@@ -58,6 +63,15 @@ public class WeaponController : MonoBehaviour {
             clone.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
            
             Destroy(clone.gameObject, 12f);
+
+            // reduce current ammo and fallback to laserGun if empty
+            if (currentWeapon != Weapons.laserGun)
+            {
+                stats.ammo--;
+                if (stats.ammo <= 0)
+                    SwitchWeapon(Weapons.laserGun);
+                // change ammo in HUD
+            }
         }
 	}
 
@@ -76,8 +90,7 @@ public class WeaponController : MonoBehaviour {
                 break;
             case Weapons.rocketLauncher:
                 stats = new RocketLauncher();
-                break;
-            
+                break;   
         }
 
         int index = 0;
@@ -89,5 +102,16 @@ public class WeaponController : MonoBehaviour {
         }
 
         currentWeapon = weapon;
+        // change weapon in HUD and play sound
+        StartCoroutine(PlayWeaponAudio());
+    }
+
+    IEnumerator PlayWeaponAudio()
+    {
+        audioSource.clip = weaponPickup;
+        audioSource.Play();
+        yield return new WaitForSeconds(weaponPickup.length);
+        audioSource.clip = weaponNames[(int) currentWeapon];
+        audioSource.Play();
     }
 }

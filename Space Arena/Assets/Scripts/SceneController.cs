@@ -13,6 +13,7 @@ public class SceneController : MonoBehaviour {
     public ParticleSystem spaceshipThruster2;
     public ParticleSystem astroThruster;
     public AudioClip[] audioClips;
+    public AudioClip bgMusic;
 
     private AudioSource audioSource;
     private int currentAudioClip;
@@ -70,12 +71,12 @@ public class SceneController : MonoBehaviour {
         GameObject cam = gameObject;
 
         // Malerion 7 camera movement
-        iTween.MoveFrom(cam, iTween.Hash(
-                    "position", new Vector3(0, 0, -10f),
+        iTween.MoveTo(cam, iTween.Hash(
+                    "position", new Vector3(5.28f, 0.59f, 16.43f),
                     "easeType", "easeOutQuad",
                     "time", 37f));
-        iTween.RotateFrom(cam, iTween.Hash(
-                    "rotation", new Vector3(0, 0, 0),
+        iTween.RotateTo(cam, iTween.Hash(
+                    "rotation", new Vector3(10, 320, 0),
                     "easeType", "easeOutQuad",
                     "time", 27f));
         // audio - "Malerion 7 narration"
@@ -96,13 +97,21 @@ public class SceneController : MonoBehaviour {
         // spaceship arrives
         spaceshipThrustersOn = true;
         iTween.MoveTo(spaceship, iTween.Hash(
-                    "position", new Vector3(0, 0, 21.1f),
+                    "position", new Vector3(-10f, -0.96f, 22.28f),
                     "easeType", "easeOutQuad",
                     "time", 10f));
+
+        // change background music
+        StartCoroutine(ChangeBgAudio());
+
         yield return new WaitForSeconds(3);
         // audio - "Going out for EVA"
         PlayNextClip();
         yield return new WaitForSeconds(7);
+        iTween.MoveTo(spaceship, iTween.Hash(
+                    "position", new Vector3(-23.72f, -0.96f, 22.28f),
+                    "easeType", "easeOutQuad",
+                    "time", 20f));
         spaceshipThrustersOn = false;
 
         astro.SetActive(true);
@@ -113,7 +122,7 @@ public class SceneController : MonoBehaviour {
                     "easeType", "easeOutQuad",
                     "time", 10f));
         iTween.MoveTo(astro, iTween.Hash(
-                    "position", new Vector3(0, 1f, 26),
+                    "position", new Vector3(-10, 1f, 26),
                     "orienttopath", true,
                     "easeType", "easeOutQuad",
                     "time", 4f));
@@ -166,6 +175,28 @@ public class SceneController : MonoBehaviour {
         PlayNextClip();
         yield return new WaitForSeconds(4);
         inNewGameAnim = false;
+    }
+
+    IEnumerator ChangeBgAudio()
+    {
+        AudioSource bgAudio = GameObject.FindGameObjectWithTag("Background").GetComponent<AudioSource>();
+        float t = 1.5f;
+        while (t > 0.0f)
+        {
+            t += Time.deltaTime;
+            bgAudio.volume = t;
+            yield return new WaitForEndOfFrame();
+        }
+        t = 0.0f;
+        bgAudio.volume = t;
+        bgAudio.clip = bgMusic;
+        bgAudio.Play();
+        while (t < 1.5f)
+        {
+            t += Time.deltaTime;
+            bgAudio.volume = t;
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     void PlayNextClip()
