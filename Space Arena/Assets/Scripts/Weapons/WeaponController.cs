@@ -52,7 +52,6 @@ public class WeaponController : MonoBehaviour {
             float angle = (Mathf.Atan2(
                 mousePos.y - transform.position.y,
                 mousePos.x - transform.position.x) - Mathf.PI / 2) * Mathf.Rad2Deg;
-            Debug.Log((int)currentWeapon);
             clone = Instantiate(projectile[(int)currentWeapon], clonePos, Quaternion.Euler(new Vector3(0f, 0f, angle))) as Transform;
             clone.GetComponent<Rigidbody>().velocity = dir * stats.speed;
             clone.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
