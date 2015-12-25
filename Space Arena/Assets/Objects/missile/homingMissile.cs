@@ -19,7 +19,7 @@ public class homingMissile : MonoBehaviour {
 		missile.velocity = new Vector3(0, missileVelocity*0.1F*Random.RandomRange(0.8F,1.8F) , 0);
         StartCoroutine(animate());
         Fire();
-        missile.angularVelocity = new Vector3(-0.2F, 0, 0);
+        missile.angularVelocity = (Vector3.zero - transform.position)*0.006F;
         
     }
 

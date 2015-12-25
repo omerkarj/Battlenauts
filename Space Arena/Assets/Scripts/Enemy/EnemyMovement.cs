@@ -19,6 +19,7 @@ public class EnemyMovement : MonoBehaviour {
     private float x;
     private float y;
     private bool start = false;
+    //
     // Use this for initialization
     void Start ()
     {
@@ -31,7 +32,8 @@ public class EnemyMovement : MonoBehaviour {
 
     private IEnumerator waitTenSeconds()
     {
-        yield return new WaitForSeconds(10F);
+        yield return new WaitForSeconds(7F);
+        Destroy(GameObject.FindGameObjectWithTag("Shield"));
         start = true;
     }
 
@@ -40,12 +42,9 @@ public class EnemyMovement : MonoBehaviour {
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         
-        //var dir = player.transform.position - transform.position;
-        //transform.rotation = Quaternion.FromToRotation(transform.pos, dir);
         
         if (player != null)
         {
-            //transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
             transform.LookAt(player.transform.position);
         }
 
@@ -77,9 +76,11 @@ public class EnemyMovement : MonoBehaviour {
 
     void OnTriggerEnter (Collider other)
     {
+        
         if (other.gameObject.tag == "PlayerShot")
         {
-            healthCounter--;
+            if (start)
+                healthCounter--;
             Instantiate(hitParticles, other.transform.position, Quaternion.identity);
             Destroy(other.gameObject);
             addScore(damageReward);
@@ -96,13 +97,13 @@ public class EnemyMovement : MonoBehaviour {
         if (other.gameObject.tag == "Missile")
         {
             Destroy(gameObject);
-            addScore(killReward);
         }
     }
 
     void addScore(int value)
     {
        PlayerScore ps= GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScore>();
-        ps.updateScore(value);
+        if (ps != null)
+            ps.updateScore(value);
     }
 }
