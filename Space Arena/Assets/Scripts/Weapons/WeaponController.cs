@@ -14,14 +14,14 @@ public class WeaponController : MonoBehaviour {
     private float nextFire;
     private AudioSource audioSource;
 
-    public enum Weapons { laserGun, alienWeapon, gravityGun, rocketLauncher };
+    public enum Weapons { laserGun, alienWeapon, gravityGun, dummyGun };
 
 	// Use this for initialization
 	void Start () {
         audioSource = gameObject.GetComponent<AudioSource>();
 
         // start the game with a laser gun!
-        SwitchWeapon(Weapons.laserGun);  
+        SwitchWeapon(Weapons.gravityGun);  
 	}
 
     void Update()
@@ -57,7 +57,6 @@ public class WeaponController : MonoBehaviour {
             float angle = (Mathf.Atan2(
                 mousePos.y - transform.position.y,
                 mousePos.x - transform.position.x) - Mathf.PI / 2) * Mathf.Rad2Deg;
-            Debug.Log((int)currentWeapon);
             clone = Instantiate(projectile[(int)currentWeapon], clonePos, Quaternion.Euler(new Vector3(0f, 0f, angle))) as Transform;
             clone.GetComponent<Rigidbody>().velocity = dir * stats.speed;
             clone.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
@@ -88,8 +87,8 @@ public class WeaponController : MonoBehaviour {
             case Weapons.gravityGun:
                 stats = new GravityGun();
                 break;
-            case Weapons.rocketLauncher:
-                stats = new RocketLauncher();
+            case Weapons.dummyGun:
+                stats = new DummyGun();
                 break;   
         }
 

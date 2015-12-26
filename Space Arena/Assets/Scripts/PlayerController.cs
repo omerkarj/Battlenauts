@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void OnTriggerEnter (Collider other) {
+        Debug.Log("player collided with " + other.tag);
         switch (other.gameObject.tag) {
             // Weapon pickups
             case "WeaponDrop-LaserGun":
@@ -59,6 +60,9 @@ public class PlayerController : MonoBehaviour {
                 break;
             case "WeaponDrop-GravityGun":
                 weaponController.SwitchWeapon(WeaponController.Weapons.gravityGun);
+                break;
+            case "WeaponDrop-DummyGun":
+                weaponController.SwitchWeapon(WeaponController.Weapons.dummyGun);
                 break;
         }
         if (other.gameObject.tag != "PlayerShot" && other.gameObject.tag != "target")

@@ -49,16 +49,16 @@ public class GravityGun : WeaponStats {
     }
 }
 
-public class RocketLauncher : WeaponStats
+public class DummyGun : WeaponStats
 {
 
-    public RocketLauncher()
+    public DummyGun()
     {
-        this.name = "Rocket Laucher";
+        this.name = "Dummy Gun";
         this.force = 1.2f;
         this.speed = 20f;
         this.fireRate = 1.5f;
         this.damage = 100;
-        this.ammo = 3;
+        this.ammo = 1;
     }
 }
