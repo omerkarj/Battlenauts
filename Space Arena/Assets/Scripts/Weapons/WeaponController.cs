@@ -9,7 +9,9 @@ public class WeaponController : MonoBehaviour {
     public AudioClip[] weaponNames;
     public AudioClip weaponPickup;
 
-    private Text weaponText;
+    // UI Elements
+    public Text weaponText;
+    public Text ammo;
     private Weapons currentWeapon;
     private float nextFire;
     private AudioSource audioSource;
@@ -70,6 +72,7 @@ public class WeaponController : MonoBehaviour {
                 if (stats.ammo <= 0)
                     SwitchWeapon(Weapons.laserGun);
                 // change ammo in HUD
+                ammo.text = stats.ammo.ToString();
             }
         }
 	}
@@ -80,6 +83,7 @@ public class WeaponController : MonoBehaviour {
         switch (weapon) {
             case Weapons.laserGun:
                 stats = new LaserGun();
+                ammo.text = "∞";
                 break;
             case Weapons.alienWeapon:
                 stats = new AlienWeapon();
@@ -102,6 +106,11 @@ public class WeaponController : MonoBehaviour {
 
         currentWeapon = weapon;
         // change weapon in HUD and play sound
+        weaponText.text = stats.name;
+        if (weapon != Weapons.laserGun)
+        {
+            ammo.text = stats.ammo.ToString();
+        }
         StartCoroutine(PlayWeaponAudio());
     }
 
