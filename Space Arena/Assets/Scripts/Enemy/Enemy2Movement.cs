@@ -14,6 +14,8 @@ public class Enemy2Movement : MonoBehaviour {
     public int killReward = 100;
     public Transform explosionParticles;
     public Transform hitParticles;
+    public int healthPacks = 0;
+    public GameObject healthPack;
 
     private float x;
     private float y;
@@ -21,7 +23,7 @@ public class Enemy2Movement : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        StartCoroutine(initialMovement());
+        //StartCoroutine(initialMovement());
         
         StartCoroutine(couroutineThatWaits());
         StartCoroutine(movementCoroutine());
@@ -55,8 +57,18 @@ public class Enemy2Movement : MonoBehaviour {
         movement = true;
         while (true)
         {
-            Instantiate(Child, transform.position + new Vector3(-1.5f, 0, 0), new Quaternion());
-            yield return new WaitForSeconds(3.8f);
+            bool left = GameObject.FindGameObjectWithTag("GameController").GetComponent<Enemy2Spawner>().left;
+            if (left)
+            {
+                Instantiate(Child, transform.position + new Vector3(-1.5f, 0, 0), new Quaternion());
+                yield return new WaitForSeconds(3.8f);
+            }
+            else
+            {
+                Instantiate(Child, transform.position + new Vector3(1.5f, 0, 0), new Quaternion());
+                yield return new WaitForSeconds(3.8f);
+            }
+            
         }
         
         
@@ -67,13 +79,6 @@ public class Enemy2Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (movement)
-        { 
-        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-        pos.x = Mathf.Clamp(pos.x, 0.1f, 0.9f);
-        pos.y = Mathf.Clamp(pos.y, 0.1f, 0.9f);
-        transform.position = Camera.main.ViewportToWorldPoint(pos);
-        }
 
     }
 
@@ -82,7 +87,6 @@ public class Enemy2Movement : MonoBehaviour {
 
         if (other.gameObject.tag == "PlayerShot")
         {
-            
             healthCounter--;
             Instantiate(hitParticles, other.transform.position, Quaternion.identity);
             Destroy(other.gameObject);
@@ -91,8 +95,13 @@ public class Enemy2Movement : MonoBehaviour {
         }
 
         // Check if enemy is dead
-        if (healthCounter == 0)
+        if (healthCounter <= 0)
         {
+            while (healthPacks > 0)
+            {
+                Instantiate(healthPack, transform.position, new Quaternion());
+                healthPacks--;
+            }
             Destroy(gameObject);
             Instantiate(explosionParticles, other.transform.position, Quaternion.identity);
             addScore(killReward);
