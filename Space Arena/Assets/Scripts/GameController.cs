@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class GameController : MonoBehaviour {
 
     public GameObject playerPrefab;
-    private bool pauseToggle;
+    public bool pauseToggle;
     public Image darkness;
     private PlayerController playerController;
     private PlayerMovement playerMovement;
@@ -43,6 +43,7 @@ public class GameController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (pauseToggle) {
+                GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Animator>().SetTrigger("pause");
                 Time.timeScale = 1;
                 darkness.color = new Color32(0, 0, 0, 0);
             } else {
