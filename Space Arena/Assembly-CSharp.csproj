@@ -68,6 +68,8 @@
      <Compile Include="Assets\Scripts\HUD\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\HUD\PlayerScore.cs" />
      <Compile Include="Assets\Scripts\HUD\SpecialPower.cs" />
+     <Compile Include="Assets\Scripts\HighScoreList.cs" />
+     <Compile Include="Assets\Scripts\HighScoreValues.cs" />
      <Compile Include="Assets\Scripts\Manager\Enemy2Spawner.cs" />
      <Compile Include="Assets\Scripts\Manager\EnemySpawner.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
@@ -79,7 +81,6 @@
      <Compile Include="Assets\Scripts\Weapons\WeaponController.cs" />
      <Compile Include="Assets\Scripts\Weapons\gravityWeapon.cs" />
      <Compile Include="Assets\Scripts\scoreHandler.cs" />
-     <Compile Include="Assets\autoShooting.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />

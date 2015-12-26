@@ -5,29 +5,31 @@ public class Menu : MonoBehaviour {
 
     private Animator _animator;
     private CanvasGroup _canvasGroup;
-    public RectTransform rect;
+    private AudioSource _audioSource;
+    public AudioClip slideInSound;
+    public AudioClip slideOutSound;
     
     public bool IsOpen
     {
         get { return _animator.GetBool("IsOpen"); }
-        set { _animator.SetBool("IsOpen", value); }
+        set { 
+            _animator.SetBool("IsOpen", value);
+            StartCoroutine(SlideWithDelay(value));
+        }
     }
 
     public void Awake()
     {
         _animator = GetComponent<Animator>();
         _canvasGroup = GetComponent<CanvasGroup>();
+        _audioSource = gameObject.AddComponent<AudioSource>();
+        _audioSource.volume = 0.4f;
 
-        rect = GetComponent<RectTransform>();
-        //rect.position = new Vector3(0, 0, 0);
         _canvasGroup.interactable = true;
-        
-
     }
 
     public void Update()
     {
-        //rect.position = new Vector3(0, 0, 0);
         if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("MainMenuOpen"))
         {
             _canvasGroup.blocksRaycasts = _canvasGroup.interactable = false;
@@ -37,6 +39,23 @@ public class Menu : MonoBehaviour {
             _canvasGroup.blocksRaycasts = _canvasGroup.interactable = true;
         }
 
+    }
+
+    IEnumerator SlideWithDelay(bool val)
+    {
+        float delay;
+        if (val)
+        {
+            _audioSource.clip = slideInSound;
+            delay = 0f;
+        }
+        else
+        {
+            _audioSource.clip = slideOutSound;
+            delay = 1.7f;
+        }
+        yield return new WaitForSeconds(delay);
+        _audioSource.Play();
     }
 
 }
