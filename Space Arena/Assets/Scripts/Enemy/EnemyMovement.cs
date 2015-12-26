@@ -112,6 +112,11 @@ public class EnemyMovement : MonoBehaviour {
         }
         if (other.gameObject.tag == "Missile")
         {
+            while (healthPacks > 0)
+            {
+                Instantiate(healthPack, transform.position, new Quaternion());
+                healthPacks--;
+            }
             Destroy(gameObject);
         }
     }

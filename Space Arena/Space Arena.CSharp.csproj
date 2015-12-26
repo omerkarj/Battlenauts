@@ -112,7 +112,9 @@
     <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponController.cs" />
     <Compile Include="Assets\Scripts\Weapons\gravityWeapon.cs" />
+    <Compile Include="Assets\Scripts\rotateSlowly.cs" />
     <Compile Include="Assets\Scripts\scoreHandler.cs" />
+    <Compile Include="Assets\StopShooting.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Elementals\!Readme.txt" />
