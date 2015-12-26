@@ -10,7 +10,7 @@ public class SpawnWeapon : MonoBehaviour {
 
     public void CreateWeapon()
     {
-        if (Random.Range(0, 1) <= SpawnProbabilty)
+        if (Random.Range(0F, 1F) <= SpawnProbabilty)
         {
             Instantiate(weaponPrefabs[Random.Range(0, weaponPrefabs.Count)], transform.position, Quaternion.identity);
         }

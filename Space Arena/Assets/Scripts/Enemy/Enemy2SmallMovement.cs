@@ -26,8 +26,12 @@ public class Enemy2SmallMovement : MonoBehaviour
     {
         
         var player = GameObject.FindGameObjectWithTag("Player");
-        yield return new WaitForSeconds(5f);
-        iTween.MoveTo(gameObject, player.transform.position, 2f);
+        while (true) { 
+            yield return new WaitForSeconds(5f);
+            iTween.MoveTo(gameObject, player.transform.position, 2f);
+            GetComponent<Rigidbody>().AddForce(player.transform.position);
+        }
+        
     }
 
     // Update is called once per frame

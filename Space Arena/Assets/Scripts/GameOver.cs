@@ -1,53 +1,86 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GameOver : MonoBehaviour {
 
-    Animator anim;
+    public AudioClip gameOverAudio;
+    public AudioClip newHighScoreAudio;
+    public Text scoreText;
 
+    private AudioSource audioSource;
+    private Animator anim;
+    private PlayerMovement pm;
+    private bool triggered = false;
 
 	// Use this for initialization
 	void Start () {
+        audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
+        pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-
-        PlayerHealth ph = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-        if (ph.currentHealth <= 0)
+	void FixedUpdate () {
+        if (pm.isDead && !triggered)
         {
+            int playerScore = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScore>().score;
+            scoreText.text = "Score " + playerScore;
             anim.SetTrigger("gameOver");
-            CheckHighScore();
-        }
+            audioSource.clip = gameOverAudio;
+            audioSource.Play();
 
+            StartCoroutine(CheckHighScore(playerScore));
+        }
 	}
 
-    void CheckHighScore()
+    IEnumerator CheckHighScore(int playerScore)
     {
-        int playerScore = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScore>().score;
-
-        int i = 1;
-        // find the entry to replace with current score
-        while (i <= 10)
+        if (!triggered)
         {
-            int scoreInEntry = PlayerPrefs.GetInt("HightScore" + i + "Score");
-            if (!PlayerPrefs.HasKey("HighScore" + i + "Score") || playerScore > PlayerPrefs.GetInt("HightScore" + i + "Score"))
-                break;
-            i++;
-        }
+            triggered = true;
+            yield return new WaitForSeconds(2);
 
-        // replace this entry and all following entries
-        int j = i;
-        while (j < 10)
-        {
-            int scoreInEntry = PlayerPrefs.GetInt("HighScore" + j + "Score");
-            PlayerPrefs.SetInt("HighScore" + (j + 1) + "Score", scoreInEntry);
-            // TODO: set name too
-            j++;
-        }
-        PlayerPrefs.SetInt("HighScore" + i + "Score", playerScore);
+            Debug.Log("check high score started");
+            bool swap = false;
 
-        PlayerPrefs.Save();
+            int i = 1;
+            // find the entry to replace with current score
+            while (i <= 10)
+            {
+                int scoreInEntry = PlayerPrefs.GetInt("HighScore" + i + "Score");
+                if (!PlayerPrefs.HasKey("HighScore" + i + "Score") || (playerScore > PlayerPrefs.GetInt("HighScore" + i + "Score")))
+                {
+                    swap = true;
+                    break;
+                }
+                i++;
+            }
+
+            if (swap)
+            {
+                if (i == 1)
+                {
+                    audioSource.clip = newHighScoreAudio;
+                    audioSource.Play();
+                }
+
+                // replace following entries
+                int j = 10;
+                while (j > i)
+                {
+                    int scoreInAboveEntry = PlayerPrefs.GetInt("HighScore" + (j - 1) + "Score");
+                    string nameInAboveEntry = PlayerPrefs.GetString("HighScore" + (j - 1) + "Name");
+                    PlayerPrefs.SetInt("HighScore" + j + "Score", scoreInAboveEntry);
+                    PlayerPrefs.SetString("HighScore" + j + "Name", nameInAboveEntry);
+                    j--;
+                }
+                // replace this entry
+                PlayerPrefs.SetInt("HighScore" + i + "Score", playerScore);
+                string playerName = "Battlenaut" + PlayerPrefs.GetInt("TimesPlayed");
+                PlayerPrefs.SetString("HighScore" + i + "Name", playerName);
+                PlayerPrefs.Save();
+            }
+        }
     }
 }
