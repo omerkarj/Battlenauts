@@ -16,21 +16,24 @@ public class GameController : MonoBehaviour {
     public int nextScoreLevel=500;
     private int scoreCounter;
     public Text difficultyText;
+    private int level = 1;
     private float healthReducer=1;
 
     // Use this for initialization
     void Start () {
+        GetComponent<Enemy2Spawner>().enabled = false;
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         playerhealth= GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         scoreCounter = 1;
-        InvokeRepeating("SpawnWeapon", 0, 5f);
 	}
 
     // Update is called once per frame
     void Update()
     {
         increaseDiffuculty();
+        if (level == 3)
+            GetComponent<Enemy2Spawner>().enabled = true;
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -77,13 +80,12 @@ public class GameController : MonoBehaviour {
         int diffculty = ps.score / scoreCounter;
         if (diffculty > nextScoreLevel)
         {
-            Debug.Log("difficulty:"+ diffculty);
             //Increase here enemy spawn and difficulties
             scoreCounter++;
             nextScoreLevel += 50;
             StartCoroutine(diffcultyUpText());
-            Debug.Log("next Score Level:" + nextScoreLevel);
             reduceSpawnTime();
+            level++;
         }
     }
 
@@ -100,12 +102,10 @@ public class GameController : MonoBehaviour {
         if (es.spawnInterval > 2F)
         {
             es.spawnInterval--;
-            Debug.Log("spawn interval: " + es.spawnInterval);
         }
         else
         {
             es.spawnInterval = es.spawnInterval * 0.90F;
-            Debug.Log("spawn interval: " + es.spawnInterval);
         }
     }
 }

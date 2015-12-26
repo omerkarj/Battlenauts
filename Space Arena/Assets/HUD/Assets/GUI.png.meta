@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 4cac3e8cd4a95b74d8a90f9505bf59bb
-timeCreated: 1449759860
+timeCreated: 1451155782
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -60,12 +60,12 @@ TextureImporter:
     - name: GUI_0
       rect:
         serializedVersion: 2
-        x: 1664
-        y: 912
-        width: 256
-        height: 166
+        x: 1611
+        y: 968
+        width: 309
+        height: 110
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: GUI_1
       rect:
@@ -75,7 +75,7 @@ TextureImporter:
         width: 287
         height: 249
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: GUI_2
       rect:
@@ -85,7 +85,7 @@ TextureImporter:
         width: 304
         height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: GUI_3
       rect:
@@ -95,7 +95,7 @@ TextureImporter:
         width: 375
         height: 68
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: GUI_4
       rect:
@@ -105,7 +105,7 @@ TextureImporter:
         width: 301
         height: 263
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: GUI_5
       rect:
@@ -115,7 +115,7 @@ TextureImporter:
         width: 259
         height: 99
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: GUI_6
       rect:
@@ -125,7 +125,7 @@ TextureImporter:
         width: 370
         height: 142
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

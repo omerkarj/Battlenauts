@@ -84,6 +84,7 @@
      <Compile Include="Assets\Scripts\Weapons\WeaponController.cs" />
      <Compile Include="Assets\Scripts\Weapons\gravityWeapon.cs" />
      <Compile Include="Assets\Scripts\scoreHandler.cs" />
+     <Compile Include="Assets\StopShooting.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />

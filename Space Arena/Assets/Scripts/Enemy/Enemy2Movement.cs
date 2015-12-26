@@ -97,6 +97,7 @@ public class Enemy2Movement : MonoBehaviour {
         // Check if enemy is dead
         if (healthCounter <= 0)
         {
+            gameObject.GetComponent<SpawnWeapon>().CreateWeapon();
             while (healthPacks > 0)
             {
                 Instantiate(healthPack, transform.position, new Quaternion());

@@ -13,6 +13,8 @@ public class EnemyMovement : MonoBehaviour {
     //Particle Effects when hit and detroyed
     public Transform explosionParticles;
     public Transform hitParticles;
+    public int healthPacks = 0;
+    public GameObject healthPack;
 
     private float directionChangeInterval;
     private float x;
@@ -96,12 +98,17 @@ public class EnemyMovement : MonoBehaviour {
         }
 
         // Check if enemy is dead
-        if (healthCounter == 0 )
+        if (healthCounter <= 0 )
         {
             Destroy(gameObject);
+            while (healthPacks > 0)
+            {
+                Instantiate(healthPack, transform.position, new Quaternion());
+                healthPacks--;
+            }
             Instantiate(explosionParticles, other.transform.position, Quaternion.identity);
             addScore(killReward);
-            gameObject.GetComponent<SpawnWeapon>().CreateWeapon();
+            //gameObject.GetComponent<SpawnWeapon>().CreateWeapon();
         }
         if (other.gameObject.tag == "Missile")
         {
