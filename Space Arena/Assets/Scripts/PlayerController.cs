@@ -5,17 +5,32 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
     public GameObject spaceship;
-	public bool isPowerupOn=false;
+	public bool isPowerupOn = false;
+    public AudioClip[] taunts;
+    public float tauntWaitMin, tauntWaitMax;
+
     private WeaponController weaponController;
+    private AudioSource audioSource;
+    private float tauntWait;
     
 	// Use this for initialization
 	void Start () {
         weaponController = GameObject.FindGameObjectWithTag("Weapon").GetComponent<WeaponController>();
+        audioSource = GetComponent<AudioSource>();
+        tauntWait = Random.Range(tauntWaitMin, tauntWaitMax);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        
+
+        // player taunts
+        tauntWait -= Time.deltaTime;
+        if (tauntWait <= 0)
+        {
+            audioSource.clip = taunts[Mathf.RoundToInt(Random.Range(0, taunts.Length - 1))];
+            audioSource.Play();
+            tauntWait = Random.Range(tauntWaitMin, tauntWaitMax);
+        }
 	}
 
     void FixedUpdate() {
@@ -34,6 +49,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void OnTriggerEnter (Collider other) {
+        Debug.Log("player collided with " + other.tag);
         switch (other.gameObject.tag) {
             // Weapon pickups
             case "WeaponDrop-LaserGun":
@@ -41,6 +57,12 @@ public class PlayerController : MonoBehaviour {
                 break;
             case "WeaponDrop-AlienWeapon":
                 weaponController.SwitchWeapon(WeaponController.Weapons.alienWeapon);
+                break;
+            case "WeaponDrop-GravityGun":
+                weaponController.SwitchWeapon(WeaponController.Weapons.gravityGun);
+                break;
+            case "WeaponDrop-DummyGun":
+                weaponController.SwitchWeapon(WeaponController.Weapons.dummyGun);
                 break;
         }
         if (other.gameObject.tag != "PlayerShot" && other.gameObject.tag != "target")

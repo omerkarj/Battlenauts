@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         scoreCounter = 1;
-        //InvokeRepeating("SpawnWeapon", 0, 5f);
+        InvokeRepeating("SpawnWeapon", 0, 5f);
 	}
 
     // Update is called once per frame
@@ -68,10 +68,10 @@ public class GameController : MonoBehaviour {
     public void increaseDiffuculty()
     {
         PlayerScore ps = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScore>();
-        int diffculty = ps.Score / scoreCounter;
+        int diffculty = ps.score / scoreCounter;
         if (diffculty > nextScoreLevel)
         {
-            Debug.Log("diffucly:"+ diffculty);
+            Debug.Log("difficulty:"+ diffculty);
             //Increase here enemy spawn and difficulties
             scoreCounter++;
             nextScoreLevel += 50;

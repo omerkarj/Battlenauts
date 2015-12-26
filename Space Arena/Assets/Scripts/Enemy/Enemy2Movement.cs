@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Enemy2Movement : MonoBehaviour {
 
@@ -16,12 +17,20 @@ public class Enemy2Movement : MonoBehaviour {
 
     private float x;
     private float y;
+    private bool movement = false;
 
     // Use this for initialization
     void Start () {
-           
+        StartCoroutine(initialMovement());
+        
         StartCoroutine(couroutineThatWaits());
         StartCoroutine(movementCoroutine());
+    }
+
+    private IEnumerator initialMovement()
+    {
+        iTween.MoveBy(gameObject, new Vector3(-4, 0, 0), 2f);
+        yield return new WaitForSeconds(0);
     }
 
     IEnumerator movementCoroutine()
@@ -29,11 +38,11 @@ public class Enemy2Movement : MonoBehaviour {
         while (true)
         {
             if (transform.position.y > 3) { 
-                iTween.MoveBy(gameObject, new Vector3(0, -9,0), 4f);
+                iTween.MoveBy(gameObject, new Vector3(0, UnityEngine.Random.Range(-9f, -4f), 0), 4f);
             }
             else 
             {
-                iTween.MoveBy(gameObject, new Vector3(0, Random.Range(3f,7f), 0), 2f);
+                iTween.MoveBy(gameObject, new Vector3(0, UnityEngine.Random.Range(3f,7f), 0), 2f);
             }
             yield return new WaitForSeconds(4f);
 
@@ -42,11 +51,12 @@ public class Enemy2Movement : MonoBehaviour {
     }
     IEnumerator couroutineThatWaits()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(3.8f);
+        movement = true;
         while (true)
         {
-            Instantiate(Child, transform.position + new Vector3(-2, 0, 0), new Quaternion());
-            yield return new WaitForSeconds(3f);
+            Instantiate(Child, transform.position + new Vector3(-1.5f, 0, 0), new Quaternion());
+            yield return new WaitForSeconds(3.8f);
         }
         
         
@@ -57,11 +67,13 @@ public class Enemy2Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if (movement)
+        { 
         Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
         pos.x = Mathf.Clamp(pos.x, 0.1f, 0.9f);
         pos.y = Mathf.Clamp(pos.y, 0.1f, 0.9f);
         transform.position = Camera.main.ViewportToWorldPoint(pos);
-
+        }
 
     }
 

@@ -13,10 +13,17 @@ public class PlayerHealth : MonoBehaviour {
     public Text healthText;
     public Image visualHealth;
     public Transform visualDamage;
+    public AudioClip healthAudio;
+    public AudioClip[] hitsAudio;
+    private AudioSource audioSource;
+    private PlayerMovement playerMovement;
 
 
     // Use this for initialization
     void Start () {
+        audioSource = GetComponent<AudioSource>();
+        playerMovement = gameObject.GetComponent<PlayerMovement>();
+
         xPos = healthBar.position.x;
         maxY = healthBar.position.y;
         minY = healthBar.position.y - healthBar.rect.height;
@@ -34,7 +41,7 @@ public class PlayerHealth : MonoBehaviour {
         if(currentHealth < 0)
         {
             healthText.text = "" + 0;
-            gameObject.GetComponent<PlayerMovement>().KillPlayer();
+            playerMovement.KillPlayer();
             return;
         }
             
@@ -63,26 +70,37 @@ public class PlayerHealth : MonoBehaviour {
 
 
     void OnTriggerEnter(Collider other) {
-        switch (other.gameObject.tag)
+        if (!playerMovement.isDead)
         {
-            case "HealthDrop":
-                currentHealth += 10;
-                break;
-            // Hit by enemy shot
-            case "EnemyShot":
-                Instantiate(visualDamage, transform.position, Quaternion.identity);
-                currentHealth -= Random.Range(5, 10);
-                break;
-            // Collision with enemy / asteroid
-            case "target":
-                currentHealth -= Random.Range(10, 15);
-                break;
-            case "Asteroid":
-                currentHealth -= Random.Range(10, 20);
-                break;
-        }
+            switch (other.gameObject.tag)
+            {
+                case "HealthDrop":
+                    currentHealth += 10;
+                    audioSource.clip = healthAudio;
+                    audioSource.Play();
+                    break;
+                // Hit by enemy shot
+                case "EnemyShot":
+                    Instantiate(visualDamage, transform.position, Quaternion.identity);
+                    currentHealth -= Random.Range(5, 10);
+                    audioSource.clip = hitsAudio[Mathf.RoundToInt(Random.Range(0, hitsAudio.Length - 1))];
+                    audioSource.Play();
+                    break;
+                // Collision with enemy / asteroid
+                case "target":
+                    currentHealth -= Random.Range(10, 15);
+                    audioSource.clip = hitsAudio[Mathf.RoundToInt(Random.Range(0, hitsAudio.Length - 1))];
+                    audioSource.Play();
+                    break;
+                case "Asteroid":
+                    currentHealth -= Random.Range(10, 20);
+                    audioSource.clip = hitsAudio[Mathf.RoundToInt(Random.Range(0, hitsAudio.Length - 1))];
+                    audioSource.Play();
+                    break;
+            }
 
-        HandleHealth();
+            HandleHealth();
+        }
     }
 
 

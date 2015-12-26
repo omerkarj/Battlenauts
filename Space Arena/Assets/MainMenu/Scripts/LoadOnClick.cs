@@ -5,7 +5,7 @@ public class LoadOnClick : MonoBehaviour {
 
 public void LoadScene(int level)
     {
-        Debug.Log("HERE");
+        PlayerPrefs.SetInt("lastLevel", Application.loadedLevel);
         Application.LoadLevel(level);
     }
 }

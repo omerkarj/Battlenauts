@@ -8,6 +8,7 @@ public class WeaponStats {
     public float speed;
     public float fireRate;
     public float damage;
+    public int ammo;
 }
 
 public class LaserGun : WeaponStats {
@@ -31,9 +32,12 @@ public class AlienWeapon : WeaponStats
         this.speed = 20f;
         this.fireRate = 0.1f;
         this.damage = 35;
+        this.ammo = 50;
     }
 }
-    public class GravityGun : WeaponStats { 
+
+public class GravityGun : WeaponStats {
+
     public GravityGun()
     {
         this.name = "Gravity Gun";
@@ -41,18 +45,20 @@ public class AlienWeapon : WeaponStats
         this.speed = 0.8f;
         this.fireRate = 0.1f;
         this.damage = 0;
+        this.ammo = 1;
     }
 }
 
-public class RocketLauncher : WeaponStats
+public class DummyGun : WeaponStats
 {
 
-    public RocketLauncher()
+    public DummyGun()
     {
-        this.name = "Rocket Laucher";
+        this.name = "Dummy Gun";
         this.force = 1.2f;
         this.speed = 20f;
         this.fireRate = 1.5f;
         this.damage = 100;
+        this.ammo = 1;
     }
 }

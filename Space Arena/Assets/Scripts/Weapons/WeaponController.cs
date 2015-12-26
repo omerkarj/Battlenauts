@@ -6,17 +6,22 @@ public class WeaponController : MonoBehaviour {
 
     public WeaponStats stats;
     public Transform[] projectile;
+    public AudioClip[] weaponNames;
+    public AudioClip weaponPickup;
 
     private Text weaponText;
     private Weapons currentWeapon;
     private float nextFire;
+    private AudioSource audioSource;
 
-    public enum Weapons { laserGun, alienWeapon, gravityGun, rocketLauncher };
+    public enum Weapons { laserGun, alienWeapon, gravityGun, dummyGun };
 
 	// Use this for initialization
 	void Start () {
+        audioSource = gameObject.GetComponent<AudioSource>();
+
         // start the game with a laser gun!
-        SwitchWeapon(Weapons.laserGun);  
+        SwitchWeapon(Weapons.gravityGun);  
 	}
 
     void Update()
@@ -52,12 +57,20 @@ public class WeaponController : MonoBehaviour {
             float angle = (Mathf.Atan2(
                 mousePos.y - transform.position.y,
                 mousePos.x - transform.position.x) - Mathf.PI / 2) * Mathf.Rad2Deg;
-            Debug.Log((int)currentWeapon);
             clone = Instantiate(projectile[(int)currentWeapon], clonePos, Quaternion.Euler(new Vector3(0f, 0f, angle))) as Transform;
             clone.GetComponent<Rigidbody>().velocity = dir * stats.speed;
             clone.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
            
             Destroy(clone.gameObject, 12f);
+
+            // reduce current ammo and fallback to laserGun if empty
+            if (currentWeapon != Weapons.laserGun)
+            {
+                stats.ammo--;
+                if (stats.ammo <= 0)
+                    SwitchWeapon(Weapons.laserGun);
+                // change ammo in HUD
+            }
         }
 	}
 
@@ -74,10 +87,9 @@ public class WeaponController : MonoBehaviour {
             case Weapons.gravityGun:
                 stats = new GravityGun();
                 break;
-            case Weapons.rocketLauncher:
-                stats = new RocketLauncher();
-                break;
-            
+            case Weapons.dummyGun:
+                stats = new DummyGun();
+                break;   
         }
 
         int index = 0;
@@ -89,5 +101,16 @@ public class WeaponController : MonoBehaviour {
         }
 
         currentWeapon = weapon;
+        // change weapon in HUD and play sound
+        StartCoroutine(PlayWeaponAudio());
+    }
+
+    IEnumerator PlayWeaponAudio()
+    {
+        audioSource.clip = weaponPickup;
+        audioSource.Play();
+        yield return new WaitForSeconds(weaponPickup.length);
+        audioSource.clip = weaponNames[(int) currentWeapon];
+        audioSource.Play();
     }
 }
