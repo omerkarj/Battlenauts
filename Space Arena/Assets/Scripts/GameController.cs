@@ -19,6 +19,9 @@ public class GameController : MonoBehaviour {
     private int level = 1;
     private float healthReducer=1;
 
+    private AudioSource audioSource;
+    public AudioClip difficultyUpSound;
+
     // Use this for initialization
     void Start () {
         GetComponent<Enemy2Spawner>().enabled = false;
@@ -26,6 +29,8 @@ public class GameController : MonoBehaviour {
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         playerhealth= GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         scoreCounter = 1;
+
+        audioSource = gameObject.AddComponent<AudioSource>();
 	}
 
     // Update is called once per frame
@@ -92,6 +97,9 @@ public class GameController : MonoBehaviour {
     private IEnumerator diffcultyUpText()
     {
         difficultyText.text = "Difficulty Up!";
+        audioSource.clip = difficultyUpSound;
+        audioSource.volume = 0.7f;
+        audioSource.Play();
         yield return new WaitForSeconds(1.5f);
         difficultyText.text = "";
     }

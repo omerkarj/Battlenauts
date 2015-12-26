@@ -6,6 +6,7 @@ public class WeaponController : MonoBehaviour {
 
     public WeaponStats stats;
     public Transform[] projectile;
+    public GameObject[] weaponImages;
     public AudioClip[] weaponNames;
     public AudioClip weaponPickup;
 
@@ -111,6 +112,14 @@ public class WeaponController : MonoBehaviour {
 
         currentWeapon = weapon;
         // change weapon in HUD and play sound
+        index = 0;
+        foreach (GameObject image in weaponImages)
+        {
+            image.SetActive(false);
+            if (index == (int)weapon)
+                image.SetActive (true);
+            index++;
+        }
         weaponText.text = stats.name;
         if (weapon != Weapons.laserGun)
         {
