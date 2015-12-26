@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour {
         astroAnimator = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
 
-        if (PlayerPrefs.GetInt("lastLevel") == 2)
+        if (PlayerPrefs.GetInt("LastLevel") == 2)
             ResetPlayer();
 
         PlayerPrefs.SetInt("TimesPlayed", PlayerPrefs.GetInt("TimesPlayed") + 1);

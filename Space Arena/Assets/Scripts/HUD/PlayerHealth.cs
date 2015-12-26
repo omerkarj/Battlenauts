@@ -28,6 +28,7 @@ public class PlayerHealth : MonoBehaviour {
         maxY = healthBar.position.y;
         minY = healthBar.position.y - healthBar.rect.height;
         currentHealth = maxHealth;
+        HandleHealth();
 
 	}
 	
@@ -53,14 +54,18 @@ public class PlayerHealth : MonoBehaviour {
             //{
             healthBar.position = new Vector3(xPos, currentYvalue);
             //}
-
+            Color healthColor = Color.green;
             if (currentHealth > maxHealth / 2) //More then 50% health
             {
-                visualHealth.color = new Color32((byte)MapValues(currentHealth, maxHealth / 2, maxHealth, 255, 0), 255, 0, 75);
+                healthColor.a = 0.2F;
+                visualHealth.GetComponent<Image>().color = healthColor;
             }
             else //less then 50% health
             {
-                visualHealth.color = new Color32(255, (byte)MapValues(currentHealth, 0, maxHealth / 2, 0, 255), 0, 75);
+
+                healthColor.a = 0.2F;
+                healthColor = Color.red;
+                visualHealth.GetComponent<Image>().color = healthColor;
             }
         }
 
