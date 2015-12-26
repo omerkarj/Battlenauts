@@ -45,7 +45,7 @@ public class GravityGun : WeaponStats {
         this.speed = 0.8f;
         this.fireRate = 0.1f;
         this.damage = 0;
-        this.ammo = 1;
+        this.ammo = 2;
     }
 }
 
@@ -56,7 +56,7 @@ public class DummyGun : WeaponStats
     {
         this.name = "Dummy Gun";
         this.force = 1.2f;
-        this.speed = 20f;
+        this.speed = 1f;
         this.fireRate = 1.5f;
         this.damage = 100;
         this.ammo = 1;

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 
 public class EnemyMovement : MonoBehaviour {
 
@@ -40,12 +39,21 @@ public class EnemyMovement : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject target = GameObject.FindGameObjectWithTag("Dummy");
         
         
-        if (player != null)
+        if (target != null)
         {
-            transform.LookAt(player.transform.position);
+            transform.LookAt(target.transform.position);
+        }
+        else
+        {
+            target = GameObject.FindGameObjectWithTag("Player");
+
+            if (target != null)
+            {
+                transform.LookAt(target.transform.position);
+            }
         }
 
         directionChangeInterval -= Time.deltaTime;
@@ -93,6 +101,7 @@ public class EnemyMovement : MonoBehaviour {
             Destroy(gameObject);
             Instantiate(explosionParticles, other.transform.position, Quaternion.identity);
             addScore(killReward);
+            gameObject.GetComponent<SpawnWeapon>().CreateWeapon();
         }
         if (other.gameObject.tag == "Missile")
         {
