@@ -9,6 +9,7 @@ public class PlayerScore : MonoBehaviour {
     public Text scoreText;
     public int pointsForPowerUp = 1000;
     public AudioClip newHighScore;
+    public AudioClip powerUpReady;
     
     private AudioSource audioSource;
     private int highScore;
@@ -48,7 +49,7 @@ public class PlayerScore : MonoBehaviour {
 
 		if (powerUpCounter >= pointsForPowerUp) {
 			sp.PowerUp (pointsForPowerUp, pointsForPowerUp);
-			Debug.Log ("power up is ready");
+            Debug.Log ("power up is ready");
 			gameObject.GetComponent<PlayerController> ().isPowerupOn = true;
 		} else {
 			sp.PowerUp (powerUpCounter, pointsForPowerUp);

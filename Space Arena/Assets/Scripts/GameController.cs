@@ -16,10 +16,12 @@ public class GameController : MonoBehaviour {
     public int nextScoreLevel=500;
     private int scoreCounter;
     public Text difficultyText;
+    private int level = 1;
     private float healthReducer=1;
 
     // Use this for initialization
     void Start () {
+        GetComponent<Enemy2Spawner>().enabled = false;
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         playerhealth= GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
@@ -30,6 +32,8 @@ public class GameController : MonoBehaviour {
     void Update()
     {
         increaseDiffuculty();
+        if (level == 3)
+            GetComponent<Enemy2Spawner>().enabled = true;
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -81,6 +85,7 @@ public class GameController : MonoBehaviour {
             nextScoreLevel += 50;
             StartCoroutine(diffcultyUpText());
             reduceSpawnTime();
+            level++;
         }
     }
 

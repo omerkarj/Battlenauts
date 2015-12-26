@@ -8,7 +8,10 @@ public class PlayerController : MonoBehaviour {
 	public bool isPowerupOn = false;
     public AudioClip[] taunts;
     public float tauntWaitMin, tauntWaitMax;
-
+    public AudioClip oxygenLevelCritical;
+    private bool oxygenCrit = false;
+    public AudioClip lowOxygenLevel;
+    private bool lowOx = false;
     private WeaponController weaponController;
     private AudioSource audioSource;
     private float tauntWait;
@@ -22,7 +25,22 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        if (GetComponent<PlayerHealth>().currentHealth >= 45 && lowOx)
+            lowOx = false;
+        if (GetComponent<PlayerHealth>().currentHealth >= 25 && oxygenCrit)
+            oxygenCrit = false;
+        if (GetComponent<PlayerHealth>().currentHealth <= 40 && !lowOx)
+        {
+            audioSource.clip = lowOxygenLevel;
+            audioSource.Play();
+            lowOx = true;
+        }
+        if (GetComponent<PlayerHealth>().currentHealth <= 15 && !oxygenCrit)
+        {
+            audioSource.clip = oxygenLevelCritical;
+            audioSource.Play();
+            oxygenCrit = true;
+        }
         // player taunts
         tauntWait -= Time.deltaTime;
         if (tauntWait <= 0)
