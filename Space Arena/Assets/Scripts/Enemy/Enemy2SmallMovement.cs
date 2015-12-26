@@ -9,18 +9,22 @@ public class Enemy2SmallMovement : MonoBehaviour
     public int killReward = 20;
     public Transform explosionParticles;
 
-
+    private float forceInterval = 0.5f;
+    private float forceTime = 3.5f;
 
     // Use this for initialization
     void Start()
     {
+
         iTween.PunchPosition(gameObject, new Vector3(Random.Range(1f, 15f), 0, 0), 5f);
         StartCoroutine(couroutineThatWaits());
+        
 
     }
 
     private IEnumerator couroutineThatWaits()
     {
+        
         var player = GameObject.FindGameObjectWithTag("Player");
         yield return new WaitForSeconds(5f);
         iTween.MoveTo(gameObject, player.transform.position, 2f);

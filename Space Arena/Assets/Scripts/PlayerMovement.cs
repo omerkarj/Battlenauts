@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour {
     public float turnSpeedLimit = 400;
     public Transform model;
     public GameObject thrusterPrefab;
+    public AudioClip deathAudio;
 
     private const float MIN_Y_ROTATION = 110;
     private const float MAX_Y_ROTATION = 250;
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour {
     private bool inEnterAnimation = false;
 
     private Animator astroAnimator;
+    private AudioSource audioSource;
 
     public enum Facing { left, right };
     public Facing facing = Facing.right;
@@ -32,6 +34,10 @@ public class PlayerMovement : MonoBehaviour {
         isDead = false;
 
         astroAnimator = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+
+        if (PlayerPrefs.GetInt("lastLevel") != 1)
+            ResetPlayer();
 	}
 	
 	// Update is called once per frame
@@ -41,7 +47,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 inEnterAnimation = true;
                 rb.constraints = RigidbodyConstraints.None;
-                model.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                facing = Facing.right;
                 transform.position = GameObject.FindGameObjectWithTag("Spaceship").transform.position;
                 iTween.MoveTo(gameObject, iTween.Hash(
                     "position", new Vector3(Random.Range(-2, 2), Random.Range(-2, 2), 0f),
@@ -167,6 +173,10 @@ public class PlayerMovement : MonoBehaviour {
         float rand = Random.Range(0, 0.5f);
         weapon.GetComponent<Rigidbody>().velocity = rb.velocity * rand;
         weapon.GetComponent<WeaponController>().enabled = false;
+        gameObject.GetComponent<PlayerHealth>().enabled = false;
+
+        audioSource.clip = deathAudio;
+        audioSource.Play();
     }
 
     // Resets the player (new game)
@@ -174,6 +184,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         GameObject weapon = GameObject.FindGameObjectWithTag("Weapon");
         PlayerHealth playerHealth = gameObject.GetComponent<PlayerHealth>();
+        playerHealth.enabled = true;
 
         weapon.GetComponent<Rigidbody>().velocity = Vector3.zero;
         weapon.GetComponent<WeaponController>().enabled = true;
