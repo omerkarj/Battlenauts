@@ -37,8 +37,7 @@ public class PlayerController : MonoBehaviour {
 		if(isPowerupOn){
 
         	if (Input.GetKeyDown(KeyCode.Space)) {
-           	 spaceship.GetComponent<missileLauncher>().launchNumber = GameObject.FindGameObjectsWithTag("target").Length;
-           	 Debug.Log(spaceship.GetComponent<missileLauncher>().launchNumber + " missiles launched!");
+           	    spaceship.GetComponent<missileLauncher>().launchNumber = GameObject.FindGameObjectsWithTag("target").Length;
             	spaceship.GetComponent<missileLauncher>().startLaunch = true;
 				isPowerupOn=false;
 				GameObject player=GameObject.FindGameObjectWithTag("Player");
@@ -49,7 +48,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     void OnTriggerEnter (Collider other) {
-        Debug.Log("player collided with " + other.tag);
         switch (other.gameObject.tag) {
             // Weapon pickups
             case "WeaponDrop-LaserGun":

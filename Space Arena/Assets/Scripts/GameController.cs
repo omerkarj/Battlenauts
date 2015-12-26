@@ -24,7 +24,6 @@ public class GameController : MonoBehaviour {
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         playerhealth= GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         scoreCounter = 1;
-        InvokeRepeating("SpawnWeapon", 0, 5f);
 	}
 
     // Update is called once per frame
@@ -77,12 +76,10 @@ public class GameController : MonoBehaviour {
         int diffculty = ps.score / scoreCounter;
         if (diffculty > nextScoreLevel)
         {
-            Debug.Log("difficulty:"+ diffculty);
             //Increase here enemy spawn and difficulties
             scoreCounter++;
             nextScoreLevel += 50;
             StartCoroutine(diffcultyUpText());
-            Debug.Log("next Score Level:" + nextScoreLevel);
             reduceSpawnTime();
         }
     }
@@ -100,12 +97,10 @@ public class GameController : MonoBehaviour {
         if (es.spawnInterval > 2F)
         {
             es.spawnInterval--;
-            Debug.Log("spawn interval: " + es.spawnInterval);
         }
         else
         {
             es.spawnInterval = es.spawnInterval * 0.90F;
-            Debug.Log("spawn interval: " + es.spawnInterval);
         }
     }
 }

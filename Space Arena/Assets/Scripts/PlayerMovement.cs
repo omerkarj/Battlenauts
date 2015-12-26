@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour {
     private float rotation;
     public bool isDead;
     public bool startEnterAnimation;
-    private bool inEnterAnimation = false;
+    public bool inEnterAnimation = false;
 
     private Animator astroAnimator;
     private AudioSource audioSource;
@@ -36,8 +36,10 @@ public class PlayerMovement : MonoBehaviour {
         astroAnimator = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
 
-        if (PlayerPrefs.GetInt("lastLevel") != 1)
+        if (PlayerPrefs.GetInt("lastLevel") == 2)
             ResetPlayer();
+
+        PlayerPrefs.SetInt("TimesPlayed", PlayerPrefs.GetInt("TimesPlayed") + 1);
 	}
 	
 	// Update is called once per frame
@@ -52,7 +54,7 @@ public class PlayerMovement : MonoBehaviour {
                 iTween.MoveTo(gameObject, iTween.Hash(
                     "position", new Vector3(Random.Range(-2, 2), Random.Range(-2, 2), 0f),
                     "oncomplete", "OnStartAnimComplete", 
-                    "time", 10f));
+                    "time", 4f));
             }
         }
         else if (!isDead) {
@@ -200,5 +202,4 @@ public class PlayerMovement : MonoBehaviour {
         inEnterAnimation = false;
         rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
     }
-
 }
