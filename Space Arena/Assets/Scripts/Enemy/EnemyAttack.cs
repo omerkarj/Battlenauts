@@ -39,8 +39,11 @@ public class EnemyAttack : MonoBehaviour {
 
     void Shoot()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-
+        player = GameObject.FindGameObjectWithTag("Dummy");
+        if (player == null)
+        {
+            player= GameObject.FindGameObjectWithTag("Player");
+        }
         float angle = (Mathf.Atan2(
             player.transform.position.y - transform.position.y,
             player.transform.position.x - transform.position.x) - Mathf.PI / 2) * Mathf.Rad2Deg;

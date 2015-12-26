@@ -37,28 +37,31 @@ public class PlayerHealth : MonoBehaviour {
 	}
 
 
-    private void HandleHealth() {
-        if(currentHealth < 0)
+    public void HandleHealth() {
+        if (!playerMovement.isDead)
         {
-            healthText.text = "" + 0;
-            playerMovement.KillPlayer();
-            return;
-        }
-            
-        healthText.text = "" + currentHealth;
-        float currentYvalue = MapValues(currentHealth, 0, maxHealth, minY, maxY);
-        //for (int i = 0; i < healthBar.position.y - currentYvalue; i++)
-        //{
-            healthBar.position = new Vector3(xPos, currentYvalue);
-        //}
+            if (currentHealth < 0)
+            {
+                healthText.text = "" + 0;
+                playerMovement.KillPlayer();
+                return;
+            }
 
-        if (currentHealth > maxHealth / 2) //More then 50% health
-        {
-          visualHealth.color = new Color32((byte)MapValues(currentHealth, maxHealth / 2, maxHealth, 255, 0), 255, 0, 75);
-        }
-        else //less then 50% health
-        {
-           visualHealth.color = new Color32(255, (byte)MapValues(currentHealth, 0, maxHealth / 2, 0, 255), 0, 75);
+            healthText.text = "" + currentHealth;
+            float currentYvalue = MapValues(currentHealth, 0, maxHealth, minY, maxY);
+            //for (int i = 0; i < healthBar.position.y - currentYvalue; i++)
+            //{
+            healthBar.position = new Vector3(xPos, currentYvalue);
+            //}
+
+            if (currentHealth > maxHealth / 2) //More then 50% health
+            {
+                visualHealth.color = new Color32((byte)MapValues(currentHealth, maxHealth / 2, maxHealth, 255, 0), 255, 0, 75);
+            }
+            else //less then 50% health
+            {
+                visualHealth.color = new Color32(255, (byte)MapValues(currentHealth, 0, maxHealth / 2, 0, 255), 0, 75);
+            }
         }
 
     }
@@ -75,7 +78,8 @@ public class PlayerHealth : MonoBehaviour {
             switch (other.gameObject.tag)
             {
                 case "HealthDrop":
-                    currentHealth += 10;
+                    if (currentHealth <= 90)
+                        currentHealth += 8;
                     audioSource.clip = healthAudio;
                     audioSource.Play();
                     break;

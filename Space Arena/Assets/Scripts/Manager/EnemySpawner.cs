@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 
 public class EnemySpawner : MonoBehaviour {
 
     public GameObject Minion;
     public Vector3 spawnLocation=new Vector3(-15,0,20);
     public float spawnInterval=7;
+    public int LimitEnemiesOnScreen=6;
     private Vector3[] spawnSpots = new Vector3[9];
     bool notRunning = true;
     // Use this for initialization
@@ -24,7 +24,13 @@ public class EnemySpawner : MonoBehaviour {
 
     private IEnumerator Spawning()
     {
-        Spawn();
+        int EnemiesOnScreen = GameObject.FindGameObjectsWithTag("target").Length;
+        if (EnemiesOnScreen < LimitEnemiesOnScreen)
+        {
+            Spawn();
+            
+           
+        }
         yield return new WaitForSeconds(spawnInterval);
         notRunning = true;
     }
@@ -34,7 +40,9 @@ public class EnemySpawner : MonoBehaviour {
     void Spawn()
     {
 
-
-        Instantiate(Minion, spawnLocation, new Quaternion());
+        GameObject clone= Instantiate(Minion, spawnLocation, new Quaternion()) as GameObject;
+        float r = Random.Range(-3F, -2F);
+        clone.transform.localScale = new Vector3(r, r, r);
+        clone.GetComponent<EnemyMovement>().healthCounter=(int) Random.Range(1,4);
     }
 }
