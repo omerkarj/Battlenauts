@@ -1,11 +1,11 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{837660E3-29F7-390B-01B1-F4C174205E23}") = "Space Arena", "Assembly-CSharp-firstpass.csproj", "{DAA79DA2-BD76-C1C7-764C-C683B9C3ED67}"
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Space Arena.CSharp.Plugins", "Space Arena.CSharp.Plugins.csproj", "{6FB6DD76-3FC4-B029-0333-6DDBAACB957B}"
 EndProject
-Project("{837660E3-29F7-390B-01B1-F4C174205E23}") = "Space Arena", "Assembly-CSharp.csproj", "{C283272E-4BE4-4875-1C3E-22176605571F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Space Arena.CSharp", "Space Arena.CSharp.csproj", "{F6C5A854-7BE0-3DDE-CED2-5FA6A3AD1F10}"
 EndProject
-Project("{837660E3-29F7-390B-01B1-F4C174205E23}") = "Space Arena", "Assembly-CSharp-Editor.csproj", "{6B86F2BA-131B-EB50-E9DE-E064D00F59EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Space Arena.CSharp.Editor", "Space Arena.CSharp.Editor.csproj", "{DF3388F6-4247-6E62-09AF-25881613CF74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,98 +13,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DAA79DA2-BD76-C1C7-764C-C683B9C3ED67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DAA79DA2-BD76-C1C7-764C-C683B9C3ED67}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DAA79DA2-BD76-C1C7-764C-C683B9C3ED67}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DAA79DA2-BD76-C1C7-764C-C683B9C3ED67}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C283272E-4BE4-4875-1C3E-22176605571F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C283272E-4BE4-4875-1C3E-22176605571F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C283272E-4BE4-4875-1C3E-22176605571F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C283272E-4BE4-4875-1C3E-22176605571F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6B86F2BA-131B-EB50-E9DE-E064D00F59EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6B86F2BA-131B-EB50-E9DE-E064D00F59EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6B86F2BA-131B-EB50-E9DE-E064D00F59EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6B86F2BA-131B-EB50-E9DE-E064D00F59EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FB6DD76-3FC4-B029-0333-6DDBAACB957B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FB6DD76-3FC4-B029-0333-6DDBAACB957B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FB6DD76-3FC4-B029-0333-6DDBAACB957B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FB6DD76-3FC4-B029-0333-6DDBAACB957B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6C5A854-7BE0-3DDE-CED2-5FA6A3AD1F10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6C5A854-7BE0-3DDE-CED2-5FA6A3AD1F10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6C5A854-7BE0-3DDE-CED2-5FA6A3AD1F10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6C5A854-7BE0-3DDE-CED2-5FA6A3AD1F10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF3388F6-4247-6E62-09AF-25881613CF74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF3388F6-4247-6E62-09AF-25881613CF74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF3388F6-4247-6E62-09AF-25881613CF74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF3388F6-4247-6E62-09AF-25881613CF74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																																																																																																																																																																			GlobalSection(MonoDevelopProperties) = preSolution
-=======
-																																																																																																																																																																																					GlobalSection(MonoDevelopProperties) = preSolution
-=======
-																																																																																																																																																																																GlobalSection(MonoDevelopProperties) = preSolution
->>>>>>> df4d618a6a4ae955e0b5c88d1f028a51cb1edc86
-=======
-																																																																																																																																																																				GlobalSection(MonoDevelopProperties) = preSolution
->>>>>>> fd92e2aa2ee535ec66a5c98c7804e18d09e4dc7b
->>>>>>> 4d332444b49162cc1d48312a3ef04959f6c66cb4
-=======
-																																																																																																																																GlobalSection(MonoDevelopProperties) = preSolution
-=======
-																																																																																																																																GlobalSection(MonoDevelopProperties) = preSolution
->>>>>>> 888a3dc09b9978ec545cbe3ca65604804de30275
->>>>>>> c02bec107cfe13a62637a1e9bbf454a4a38c374c
-=======
-																																																																																																																					GlobalSection(MonoDevelopProperties) = preSolution
->>>>>>> 39a0321565573c38fe6129439747e175f20a4e04
-=======
-																																																																																																																			GlobalSection(MonoDevelopProperties) = preSolution
->>>>>>> ecf7cc96f1dd8cc86dfc25015425a3b3084e4ee9
-=======
-																																																																																																																											GlobalSection(MonoDevelopProperties) = preSolution
->>>>>>> 475ce9fd87394ac503807e23316a366c11dea935
-=======
-																																																																																														GlobalSection(MonoDevelopProperties) = preSolution
-=======
-																																																																																			GlobalSection(MonoDevelopProperties) = preSolution
->>>>>>> 44db5cd1315b082459b1a7e768334e15b51575af
->>>>>>> 02465252546256c7faec8800d5474429269ee806
-=======
-																																																																	GlobalSection(MonoDevelopProperties) = preSolution
->>>>>>> feature/enemy2
-=======
-																																																																	GlobalSection(MonoDevelopProperties) = preSolution
->>>>>>> ea6600961733fee74d9e779efe7665a9ebd5bcf3
-=======
-																																									GlobalSection(MonoDevelopProperties) = preSolution
->>>>>>> 7dc5ff9dcf5b46711388ec9f15d0d140b3c97474
-		StartupItem = Assembly-CSharp.csproj
-		Policies = $0
-		$0.TextStylePolicy = $1
-		$1.inheritsSet = null
-		$1.scope = text/x-csharp
-		$0.CSharpFormattingPolicy = $2
-		$2.inheritsSet = Mono
-		$2.inheritsScope = text/x-csharp
-		$2.scope = text/x-csharp
-		$0.TextStylePolicy = $3
-		$3.FileWidth = 120
-		$3.TabWidth = 4
-		$3.IndentWidth = 4
-		$3.EolMarker = Unix
-		$3.inheritsSet = Mono
-		$3.inheritsScope = text/plain
-		$3.scope = text/plain
-	EndGlobalSection
-																																																																																																		GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
-		Policies = $0
-		$0.TextStylePolicy = $1
-		$1.inheritsSet = null
-		$1.scope = text/x-csharp
-		$0.CSharpFormattingPolicy = $2
-		$2.inheritsSet = Mono
-		$2.inheritsScope = text/x-csharp
-		$2.scope = text/x-csharp
-		$0.TextStylePolicy = $3
-		$3.FileWidth = 120
-		$3.TabWidth = 4
-		$3.IndentWidth = 4
-		$3.EolMarker = Unix
-		$3.inheritsSet = Mono
-		$3.inheritsScope = text/plain
-		$3.scope = text/plain
-	EndGlobalSection
-
 EndGlobal

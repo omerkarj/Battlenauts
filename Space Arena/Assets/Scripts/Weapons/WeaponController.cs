@@ -21,7 +21,7 @@ public class WeaponController : MonoBehaviour {
         audioSource = gameObject.GetComponent<AudioSource>();
 
         // start the game with a laser gun!
-        SwitchWeapon(Weapons.gravityGun);  
+        SwitchWeapon(Weapons.laserGun);  
 	}
 
     void Update()

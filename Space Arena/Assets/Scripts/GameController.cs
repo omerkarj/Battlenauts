@@ -6,21 +6,23 @@ using System.Collections.Generic;
 
 public class GameController : MonoBehaviour {
 
-    public List<GameObject> weaponPrefabs;
     public GameObject playerPrefab;
     private bool pauseToggle;
     public Image darkness;
     private PlayerController playerController;
     private PlayerMovement playerMovement;
+    private PlayerHealth playerhealth;
     public Image pauseMenu;
     public int nextScoreLevel=500;
     private int scoreCounter;
     public Text difficultyText;
+    private float healthReducer=1;
 
     // Use this for initialization
     void Start () {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        playerhealth= GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         scoreCounter = 1;
         InvokeRepeating("SpawnWeapon", 0, 5f);
 	}
@@ -45,14 +47,18 @@ public class GameController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.N))
             playerMovement.ResetPlayer();
+
+        //Reduce oxygen level every second;
+        healthReducer -= Time.deltaTime;
+        if (healthReducer <= 0)
+        {
+            playerhealth.currentHealth--;
+            healthReducer = 1;
+            playerhealth.HandleHealth();
+        }
     }
 
-    private void SpawnWeapon()
-    {
-        Vector3 position = new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0);
-        //This will spawn them at random position with (0,0,0) rotation
-        Instantiate(weaponPrefabs[Random.Range(0, weaponPrefabs.Count)], position, Quaternion.identity);
-    }
+
 
     public void newPlayer()
     {
