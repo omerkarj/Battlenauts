@@ -180,22 +180,22 @@ public class SceneController : MonoBehaviour {
     IEnumerator ChangeBgAudio()
     {
         AudioSource bgAudio = GameObject.FindGameObjectWithTag("Background").GetComponent<AudioSource>();
-        float t = 1.5f;
+        float t = 0.15f;
         while (t > 0.0f)
         {
-            t += Time.deltaTime;
+            t -= Time.deltaTime / 20;
             bgAudio.volume = t;
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(0.01f);
         }
         t = 0.0f;
-        bgAudio.volume = t;
         bgAudio.clip = bgMusic;
+        bgAudio.volume = t;
         bgAudio.Play();
-        while (t < 1.5f)
+        while (t < 0.25f)
         {
-            t += Time.deltaTime;
+            t += Time.deltaTime / 20;
             bgAudio.volume = t;
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(0.01f);
         }
     }
 
