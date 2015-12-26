@@ -75,7 +75,8 @@ public class PlayerHealth : MonoBehaviour {
             switch (other.gameObject.tag)
             {
                 case "HealthDrop":
-                    currentHealth += 10;
+                    if (currentHealth <= 90)
+                        currentHealth += 8;
                     audioSource.clip = healthAudio;
                     audioSource.Play();
                     break;

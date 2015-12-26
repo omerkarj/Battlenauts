@@ -4,10 +4,13 @@ using System.Collections;
 public class Enemy2Spawner : MonoBehaviour {
 
     public GameObject Minion;
-    public Vector3 spawnLocation = new Vector3(11, 4, 0);
+    public Vector3 spawnLocationLeft = new Vector3(9, 4, 0);
+    public Vector3 spawnLocationRight = new Vector3(-8, 4, 0);
+    public bool left = true;
     public float spawnInterval = 15;
     private Vector3[] spawnSpots = new Vector3[9];
     bool notRunning = true;
+    private int healthPack = 3;
     // Use this for initialization
     void Start()
     {
@@ -16,14 +19,12 @@ public class Enemy2Spawner : MonoBehaviour {
     void Update()
     {
         if (notRunning)
-        {
-            notRunning = false;
             StartCoroutine(Spawning());
-        }
     }
 
     private IEnumerator Spawning()
     {
+        notRunning = false;
         Spawn();
         yield return new WaitForSeconds(spawnInterval);
         notRunning = true;
@@ -33,8 +34,26 @@ public class Enemy2Spawner : MonoBehaviour {
 
     void Spawn()
     {
-
-
-        Instantiate(Minion, spawnLocation, Quaternion.Euler(0, -90, 0));
+        GameObject minion;
+        if (left)
+        {
+            minion = Instantiate(Minion, spawnLocationLeft, Quaternion.Euler(0, -90, 0)) as GameObject;
+            left = false;
+        }
+        else
+        {
+            minion = Instantiate(Minion, spawnLocationRight, Quaternion.Euler(0, 90, 0)) as GameObject;
+            left = true;
+        }
+        healthPack--;
+       
+        if (healthPack <= 0)
+        {
+            minion.GetComponent<Enemy2Movement>().healthPacks = Mathf.RoundToInt(Random.Range(1, 5));
+            Debug.Log("Health packs: " + minion.GetComponent<Enemy2Movement>().healthPacks);
+            healthPack = 3;
+        }
+        else
+            minion.GetComponent<Enemy2Movement>().healthPacks = 0;
     }
 }
