@@ -36,7 +36,7 @@ public class SceneController : MonoBehaviour {
 
     void Update()
     {
-        if (!inNewGameAnim) {
+        if (!inNewGameAnim || Input.GetKeyDown(KeyCode.Escape)) {
             Application.LoadLevel(2);
         }
 

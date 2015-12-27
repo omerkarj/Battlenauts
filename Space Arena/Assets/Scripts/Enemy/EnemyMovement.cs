@@ -33,7 +33,7 @@ public class EnemyMovement : MonoBehaviour {
 
     private IEnumerator waitTenSeconds()
     {
-        yield return new WaitForSeconds(7F);
+        yield return new WaitForSeconds(6F);
         Destroy(GameObject.FindGameObjectWithTag("Shield"));
         start = true;
     }
@@ -108,10 +108,15 @@ public class EnemyMovement : MonoBehaviour {
             }
             Instantiate(explosionParticles, other.transform.position, Quaternion.identity);
             addScore(killReward);
-            //gameObject.GetComponent<SpawnWeapon>().CreateWeapon();
+            gameObject.GetComponent<SpawnWeapon>().CreateWeapon();
         }
         if (other.gameObject.tag == "Missile")
         {
+            while (healthPacks > 0)
+            {
+                Instantiate(healthPack, transform.position, new Quaternion());
+                healthPacks--;
+            }
             Destroy(gameObject);
         }
     }

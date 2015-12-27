@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour {
             ResetPlayer();
 
         PlayerPrefs.SetInt("TimesPlayed", PlayerPrefs.GetInt("TimesPlayed") + 1);
+        PlayerPrefs.Save();
 	}
 	
 	// Update is called once per frame

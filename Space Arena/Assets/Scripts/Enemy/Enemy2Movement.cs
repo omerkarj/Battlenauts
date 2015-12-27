@@ -79,7 +79,10 @@ public class Enemy2Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-
+        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+        pos.x = Mathf.Clamp(pos.x, 0.1f, 0.9f);
+        pos.y = Mathf.Clamp(pos.y, 0.1f, 0.9f);
+        transform.position = Camera.main.ViewportToWorldPoint(pos);
     }
 
     void OnTriggerEnter(Collider other)
@@ -106,11 +109,13 @@ public class Enemy2Movement : MonoBehaviour {
             Destroy(gameObject);
             Instantiate(explosionParticles, other.transform.position, Quaternion.identity);
             addScore(killReward);
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<Enemy2Spawner>().EnemiesOnScreen--;
         }
         if (other.gameObject.tag == "Missile")
         {
             Destroy(gameObject);
             addScore(killReward);
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<Enemy2Spawner>().EnemiesOnScreen--;
         }
     }
 

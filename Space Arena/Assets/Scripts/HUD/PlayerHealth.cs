@@ -54,18 +54,18 @@ public class PlayerHealth : MonoBehaviour {
             //{
             healthBar.position = new Vector3(xPos, currentYvalue);
             //}
-            Color healthColor = Color.green;
+            Color healthColor;
             if (currentHealth > maxHealth / 2) //More then 50% health
             {
-                healthColor.a = 0.2F;
+                healthColor = new Color(0.33f, 0.8f, 0.4f, 0.2f);
                 visualHealth.GetComponent<Image>().color = healthColor;
+                healthBar.GetComponent<Image>().color = healthColor;
             }
             else //less then 50% health
             {
-
-                healthColor.a = 0.2F;
-                healthColor = Color.red;
+                healthColor = new Color(0.8f, 0f, 0f, 0.2f);
                 visualHealth.GetComponent<Image>().color = healthColor;
+                healthBar.GetComponent<Image>().color = healthColor;
             }
         }
 

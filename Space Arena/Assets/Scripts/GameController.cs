@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class GameController : MonoBehaviour {
 
     public GameObject playerPrefab;
-    private bool pauseToggle;
+    public bool pauseToggle;
     public Image darkness;
     private PlayerController playerController;
     private PlayerMovement playerMovement;
@@ -19,6 +19,9 @@ public class GameController : MonoBehaviour {
     private int level = 1;
     private float healthReducer=1;
 
+    private AudioSource audioSource;
+    public AudioClip difficultyUpSound;
+
     // Use this for initialization
     void Start () {
         GetComponent<Enemy2Spawner>().enabled = false;
@@ -26,6 +29,8 @@ public class GameController : MonoBehaviour {
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         playerhealth= GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         scoreCounter = 1;
+
+        audioSource = gameObject.AddComponent<AudioSource>();
 	}
 
     // Update is called once per frame
@@ -34,19 +39,6 @@ public class GameController : MonoBehaviour {
         increaseDiffuculty();
         if (level == 3)
             GetComponent<Enemy2Spawner>().enabled = true;
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (pauseToggle) {
-                Time.timeScale = 1;
-                darkness.color = new Color32(0, 0, 0, 0);
-            } else {
-                Time.timeScale = 0;
-                darkness.color = new Color32(0, 0, 0, 200);
-
-            }
-            pauseToggle = !pauseToggle;
-        }
 
         if (Input.GetKeyDown(KeyCode.N))
             playerMovement.ResetPlayer();
@@ -92,6 +84,9 @@ public class GameController : MonoBehaviour {
     private IEnumerator diffcultyUpText()
     {
         difficultyText.text = "Difficulty Up!";
+        audioSource.clip = difficultyUpSound;
+        audioSource.volume = 1f;
+        audioSource.Play();
         yield return new WaitForSeconds(1.5f);
         difficultyText.text = "";
     }
