@@ -40,20 +40,6 @@ public class GameController : MonoBehaviour {
         if (level == 3)
             GetComponent<Enemy2Spawner>().enabled = true;
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (pauseToggle) {
-                GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Animator>().SetTrigger("pause");
-                Time.timeScale = 1;
-                darkness.color = new Color32(0, 0, 0, 0);
-            } else {
-                Time.timeScale = 0;
-                darkness.color = new Color32(0, 0, 0, 200);
-
-            }
-            pauseToggle = !pauseToggle;
-        }
-
         if (Input.GetKeyDown(KeyCode.N))
             playerMovement.ResetPlayer();
 
@@ -99,7 +85,7 @@ public class GameController : MonoBehaviour {
     {
         difficultyText.text = "Difficulty Up!";
         audioSource.clip = difficultyUpSound;
-        audioSource.volume = 0.7f;
+        audioSource.volume = 1f;
         audioSource.Play();
         yield return new WaitForSeconds(1.5f);
         difficultyText.text = "";
